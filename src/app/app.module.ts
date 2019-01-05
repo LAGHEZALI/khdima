@@ -21,6 +21,7 @@ import { LoginSuccessComponent } from './layouts/modals/login-success/login-succ
 import { WallComponent } from './pages/wall/wall.component';
 import { RegisterErrorComponent } from './layouts/modals/register-error/register-error.component';
 import { RegisterSuccessComponent } from './layouts/modals/register-success/register-success.component';
+import { PostComponent } from './pages/wall/post/post.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RegisterSuccessComponent } from './layouts/modals/register-success/regi
     LoginErrorComponent,
     LoginSuccessComponent,
     RegisterErrorComponent,
-    RegisterSuccessComponent
+    RegisterSuccessComponent,
+    PostComponent
   ],
   entryComponents: [
     //  bottom sheets

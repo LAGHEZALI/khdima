@@ -9,15 +9,13 @@ import Swiper from 'swiper';
 })
 export class WallComponent implements OnInit, AfterViewInit {
 
-  posts: number[] = [];
+
+  posts: number[] = new Array(20);
 
   mySwiper: Swiper;
 
   constructor(
   ) {
-    for (let index = 0; index < 100; index++) {
-      this.posts.push(index);
-    }
   }
 
   ngOnInit() {
@@ -39,7 +37,8 @@ export class WallComponent implements OnInit, AfterViewInit {
       },
       pagination: {
         el: '.swiper-pagination',
-      },
+        dynamicBullets: true
+      }
     });
   }
 
