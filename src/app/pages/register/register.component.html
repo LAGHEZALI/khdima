@@ -1,0 +1,45 @@
+<div id="register-div" fxLayout="column" fxLayoutAlign="center center">
+  
+  <mat-card class="expand animated zoomIn faster">
+  
+    <form class="full-width" fxLayout="column" fxLayoutAlign="space-evenly center" (ngSubmit)="submit()" [formGroup]="registerForm">
+
+      <mat-form-field class="full-width big-font" >
+        <input class="validate" matInput placeholder="Email" formControlName="email">
+        <mat-error class="small-font" *ngIf="registerForm.controls.email.hasError('email')">
+          Veuillez entrer un email valide
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field class="full-width big-font">
+        <input matInput type="password" placeholder="Mot de passe" formControlName="password">
+        <mat-error  class="small-font" *ngIf="registerForm.controls.password.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width big-font">
+        <input matInput type="text" placeholder="Nom Complet" formControlName="displayName">
+        <mat-error  class="small-font" *ngIf="registerForm.controls.displayName.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width big-font">
+        <input matInput type="number" placeholder="Numero de Téléphone" formControlName="phoneNumber">
+        <mat-error  class="small-font" *ngIf="registerForm.controls.phoneNumber.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <div>
+          <button class="submit" mat-raised-button type="submit" [disabled]="!registerForm.valid" color="primary">S'inscrire</button>
+      </div>
+    </form>
+
+    <span style="float: right">
+        J'ai déja un compte,  <a mat-button color="primary" style="padding:0 0; margin:0 0" routerLink="/login">S'autentifier</a>
+    </span>
+  </mat-card>
+    
+</div>

@@ -1,10 +1,22 @@
 import { Component } from '@angular/core';
+import { InitService } from './shared/services/init.service';
+import { ThemeService } from './shared/services/theme.service';
 
+ThemeService.theme.subscribe(value => theme = value);
+let theme = false;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'khdima';
+
+  constructor(
+    private init: InitService
+  ) {
+  }
+
+  get theme() {
+    return theme;
+  }
 }

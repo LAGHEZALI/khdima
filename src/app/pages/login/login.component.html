@@ -1,0 +1,30 @@
+<div id="login-div" fxLayout="column" fxLayoutAlign="center center">
+  
+    <mat-card class="expand animated zoomIn faster">
+    
+      <form class="full-width" fxLayout="column" fxLayoutAlign="space-evenly center" (ngSubmit)="submit()" [formGroup]="loginForm">
+  
+        <mat-form-field class="full-width big-font" >
+          <input class="validate" matInput placeholder="Email" formControlName="email">
+          <mat-error class="small-font" *ngIf="loginForm.controls.email.hasError('email')">
+            Veuillez entrer un email valide
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field class="full-width big-font">
+          <input matInput type="password" placeholder="Mot de pase" formControlName="password">
+          <mat-error  class="small-font" *ngIf="loginForm.controls.password.hasError('required')">
+            Ce champ est <strong>Obligatoire</strong>
+          </mat-error>
+        </mat-form-field>
+  
+        <div>
+            <button class="submit" mat-raised-button [disabled]="!loginForm.valid" color="primary">Se connecter</button>
+        </div>
+      </form>
+      <span style="float: right">
+          Je n'ai pas encore de compte,  <a mat-button color="primary" style="padding:0 0; margin:0 0" routerLink="/register">S'inscrire</a>
+      </span>
+    </mat-card>
+      
+  </div>

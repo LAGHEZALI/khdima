@@ -1,0 +1,9 @@
+<div id="overlay" [ngClass]="{'off': !isLoading}" [ngClass]="{'on': isLoading}">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+    <div style="height:95%" fxLayout="column" fxLayoutAlign="center center">
+        <img width="200" src="../../../assets/images/khdima-text.png" alt="logo" class="animated infinite pulse delay-1s msg">
+        <br>
+        <mat-spinner></mat-spinner>
+        <h1 class="animated infinite pulse delay-1s msg" >{{message}}</h1>
+    </div>
+</div>

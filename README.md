@@ -25,3 +25,28 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## TODO
+
+refresh swipe angular
+
+menu khdima
+
+sign up, with photo and stuff
+
+my account
+
+post swipe
+
+post
+
+loading under header
+
+mobile/desktop version
+
+detect if app or web and hide app/web buttons
+
+can activate
+
+ne plus afficher

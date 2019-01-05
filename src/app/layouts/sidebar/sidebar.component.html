@@ -1,0 +1,48 @@
+
+<div fxLayout="column" fxLayoutAlign="start center" 
+  class="w3-sidebar w3-bar-block w3-animate-left" [ngClass]="{'close': !isOpen}" [ngClass]="{'open': isOpen}" id="mySidebar">
+  
+  <div class=" w3-border-bottom">
+    <button (click)="close_sidebar()" class="icon w3-margin" mat-icon-button>
+      <mat-icon matBadgeColor="accent"><i class="fas fa-chevron-circle-left"></i></mat-icon>
+    </button>
+  </div>
+
+  <button (click)="showLangOptions()" class="icon w3-margin" mat-icon-button>
+    <span style="font-size: 20pt">
+        <i class="fas fa-globe"></i>
+    </span>
+  </button>
+
+  <button (click)="toggleFullscreen()" class="icon w3-margin" mat-icon-button>
+    <span style="font-size: 20pt">
+      <i class="fas fa-{{fullScreenLogo}}"></i>
+    </span>
+  </button>
+
+  <button (click)="toggleTheme()" class="icon w3-margin" mat-icon-button>
+    <span style="font-size: 20pt">
+      <i class="fas fa-fill-drip"></i>
+    </span>
+  </button>
+
+  <button (click)="refresh()" class="icon w3-margin" mat-icon-button>
+    <span style="font-size: 20pt">
+      <i class="fas fa-sync-alt"></i>
+    </span>
+  </button>
+
+  <div style="position: absolute; bottom: 0;" class=" w3-border-top">
+    <button (click)="quit()" class="icon w3-margin" mat-icon-button>
+      <mat-icon matBadgeColor="accent"><i class="fas fa-power-off"></i></mat-icon>
+    </button>
+  </div>
+
+</div>
+
+<div class="w3-overlay w3-animate-opacity" style="cursor:pointer" (click)="close_sidebar()"
+   [ngClass]="{'overlayOn': isOpen}" >
+  {{isOpen}}
+</div>
+
+

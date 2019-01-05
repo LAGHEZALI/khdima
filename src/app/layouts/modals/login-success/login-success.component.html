@@ -1,0 +1,16 @@
+<div>
+  <h1 style="color: #64dd17;" mat-dialog-title>
+    <span style="color: #64dd17; margin: 10px">
+      <i class="fas fa-check-circle"></i>
+    </span>
+    Vous êtes connecté
+  </h1>
+  <div id="content" mat-dialog-content>
+    Vous pouvez désormais explorer la notre plateforme Khdima.
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-evenly center" mat-dialog-actions>
+    <button color="primary" mat-raised-button (click)="close()">Fermer</button><br>
+    <button color="accent" mat-raised-button (click)="dontShow()">Ne plus afficher</button>
+  </div>
+</div>
+

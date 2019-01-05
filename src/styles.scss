@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/theming';
+
+@import 'w3-css/w3.css';
+@import 'animate.css/animate.min.css';
+@import '../node_modules/flag-icon-css/css/flag-icon.min.css';
+
+@font-face {
+    font-family: logo;
+    src: url(assets/fonts/BeautyMountainsPersonalUse.ttf) format("opentype");
+}
+
+@include mat-core();
+
+$khdima-primary: mat-palette($mat-orange, 900);
+$khdima-accent: mat-palette($mat-blue-grey, 500);
+$khdima-warn: mat-palette($mat-blue-grey, 800);
+
+$khdima-theme: mat-light-theme($khdima-primary, $khdima-accent, $khdima-warn);
+
+@include angular-material-theme($khdima-theme);
+
+// dark theme
+
+$alt-primary: mat-palette($mat-blue-grey, 900);
+$alt-accent: mat-palette($mat-deep-orange, 900);
+$alt-warn: mat-palette($mat-red, 900);
+
+$alt-theme: mat-dark-theme($alt-primary, $alt-accent, $alt-warn);
+
+.alt-theme {
+    @include angular-material-theme($alt-theme);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
