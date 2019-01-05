@@ -1,4 +1,4 @@
-export interface Post {
+export class Post {
     uid?:               string;
     userUid:            string;
     title:              string;
@@ -9,4 +9,8 @@ export interface Post {
     city?:              string;
     imagesUrls?:        string[];
     recordUrl?:         string;
+
+    toJson(): string {
+        return JSON.stringify(this, null, '  ');
+    }
 }

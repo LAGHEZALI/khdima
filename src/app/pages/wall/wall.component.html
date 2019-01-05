@@ -11,7 +11,7 @@
 
   <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div *ngFor="let post of posts" class="swiper-slide">
+      <div *ngFor="let post of posts | async" class="swiper-slide">
         <app-post></app-post>
       </div>
     </div>

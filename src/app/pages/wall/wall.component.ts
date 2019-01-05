@@ -1,6 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import Swiper from 'swiper';
+import { PostService } from 'src/app/shared/services/post.service';
+import { Observable, of } from 'rxjs';
+import { Post } from 'src/app/shared/models/post';
 
 @Component({
   selector: 'app-wall',
@@ -10,12 +13,14 @@ import Swiper from 'swiper';
 export class WallComponent implements OnInit, AfterViewInit {
 
 
-  posts: number[] = new Array(20);
+  posts: Observable<Post[]> = of(new Array(10));
 
   mySwiper: Swiper;
 
   constructor(
+    private postService: PostService
   ) {
+    //  this.posts = this.postService.getAllPosts();
   }
 
   ngOnInit() {
