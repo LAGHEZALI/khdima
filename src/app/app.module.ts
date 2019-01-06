@@ -22,6 +22,7 @@ import { WallComponent } from './pages/wall/wall.component';
 import { RegisterErrorComponent } from './layouts/modals/register-error/register-error.component';
 import { RegisterSuccessComponent } from './layouts/modals/register-success/register-success.component';
 import { PostComponent } from './pages/wall/post/post.component';
+import { WavesurferComponent } from './layouts/modals/wavesurfer/wavesurfer.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { PostComponent } from './pages/wall/post/post.component';
     HomeComponent,
     WallComponent,
     LoadingComponent,
+    PostComponent,
     //  bottom sheets
     LanguageComponent,
     //  Dialogs
@@ -42,7 +44,7 @@ import { PostComponent } from './pages/wall/post/post.component';
     LoginSuccessComponent,
     RegisterErrorComponent,
     RegisterSuccessComponent,
-    PostComponent
+    WavesurferComponent
   ],
   entryComponents: [
     //  bottom sheets
@@ -51,7 +53,8 @@ import { PostComponent } from './pages/wall/post/post.component';
     LoginErrorComponent,
     LoginSuccessComponent,
     RegisterErrorComponent,
-    RegisterSuccessComponent
+    RegisterSuccessComponent,
+    WavesurferComponent
   ],
   imports: [
     BrowserModule,

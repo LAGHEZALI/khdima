@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { PostService } from 'src/app/shared/services/post.service';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Post } from 'src/app/shared/models/post';
 
 @Component({
@@ -11,8 +11,7 @@ import { Post } from 'src/app/shared/models/post';
 })
 export class WallComponent implements OnInit, AfterViewInit {
 
-  postsObservable: Observable<Post[]>;
-  posts: Post[];
+  postsObservable: Observable<any[]>;
 
   constructor(
     private postService: PostService

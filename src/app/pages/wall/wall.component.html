@@ -2,8 +2,8 @@
 
   
   <cdk-virtual-scroll-viewport itemSize="300">
-    <div *cdkVirtualFor="let post of postsObservable | async;">
-      <app-post [data]="post"></app-post>
+    <div *cdkVirtualFor="let post of postsObservable | async; let i =index;">
+      <app-post [data]="post" [index]="i"></app-post>
     </div>
 
   </cdk-virtual-scroll-viewport>

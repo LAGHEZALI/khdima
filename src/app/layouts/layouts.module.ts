@@ -5,9 +5,10 @@ import { RegisterSuccessComponent } from './modals/register-success/register-suc
 import { RegisterErrorComponent } from './modals/register-error/register-error.component';
 import { LoginErrorComponent } from './modals/login-error/login-error.component';
 import { LoginSuccessComponent } from './modals/login-success/login-success.component';
+import { WavesurferComponent } from './modals/wavesurfer/wavesurfer.component';
 
 @NgModule({
-  declarations: [LoadingComponent, RegisterSuccessComponent, RegisterErrorComponent, LoginErrorComponent, LoginSuccessComponent],
+  declarations: [LoadingComponent, RegisterSuccessComponent, RegisterErrorComponent, LoginErrorComponent, LoginSuccessComponent, WavesurferComponent],
   imports: [
     CommonModule
   ]

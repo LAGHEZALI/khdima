@@ -1,14 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Post } from 'src/app/shared/models/post';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { WavesurferComponent } from 'src/app/layouts/modals/wavesurfer/wavesurfer.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss']
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, AfterViewInit {
 
-  @Input() data: Post;
+  @Input() data: any;
+  @Input() index: number;
+
+  btn = 'play';
 
   totalText = 'Loading Text...';
 
@@ -21,10 +25,30 @@ export class PostComponent implements OnInit {
   buttonShowHideIcon = 'down';
   buttonShowHideColor = 'primary';
 
-  constructor() {
+  constructor(
+    public dialog: MatDialog
+  ) {
   }
 
   ngOnInit() {
+    this.initReadMore();
+  }
+
+  ngAfterViewInit(): void {
+    //  remove this following line wen deploy
+    this.data.recordUrl = 'assets/audio/dari.mp3';
+  }
+
+  wavesurfer() {
+    this.dialog.open(WavesurferComponent, {
+      width: '90%',
+      panelClass: ['animated', 'bounceIn', 'faster'],
+      disableClose: true,
+      data: this.data.recordUrl
+    });
+  }
+
+  initReadMore() {
     this.totalText = this.data.content;
     this.minText = this.totalText.substring(0, 100);
     this.text = this.minText + '...';

@@ -51,7 +51,8 @@
             ],
             "scripts": [
               "src/assets/js/scripts/fullscreen.js",
-              "node_modules/swiper/dist/js/swiper.min.js"
+              "node_modules/swiper/dist/js/swiper.min.js",
+              "node_modules/wavesurfer.js/dist/wavesurfer.min.js"
             ]
           },
           "configurations": {
