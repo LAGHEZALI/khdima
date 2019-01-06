@@ -35,8 +35,8 @@ export class PostComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    //  remove this following line wen deploy
-    this.data.recordUrl = 'assets/audio/dari.mp3';
+    //  remove this following line when deploy
+    //  this.data.recordUrl = 'assets/audio/dari.mp3';
   }
 
   wavesurfer() {
