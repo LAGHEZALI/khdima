@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 
-import Swiper from 'swiper';
 import { PostService } from 'src/app/shared/services/post.service';
 import { Observable, of } from 'rxjs';
 import { Post } from 'src/app/shared/models/post';
@@ -12,39 +11,19 @@ import { Post } from 'src/app/shared/models/post';
 })
 export class WallComponent implements OnInit, AfterViewInit {
 
-
-  posts: Observable<Post[]> = of(new Array(10));
-
-  mySwiper: Swiper;
+  postsObservable: Observable<Post[]>;
+  posts: Post[];
 
   constructor(
     private postService: PostService
   ) {
-    //  this.posts = this.postService.getAllPosts();
+    this.postsObservable = this.postService.getAllPosts();
   }
 
   ngOnInit() {
   }
 
   ngAfterViewInit(): void {
-    this.initSwiper();
-  }
-
-  initSwiper() {
-    this.mySwiper = new Swiper('.swiper-container', {
-      effect: 'cube',
-      grabCursor: true,
-      cubeEffect: {
-        shadow: true,
-        slideShadows: true,
-        shadowOffset: 20,
-        shadowScale: 0.94,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        dynamicBullets: true
-      }
-    });
   }
 
 }

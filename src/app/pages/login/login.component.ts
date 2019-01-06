@@ -6,6 +6,7 @@ import { LoginErrorComponent } from 'src/app/layouts/modals/login-error/login-er
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { LoginSuccessComponent } from 'src/app/layouts/modals/login-success/login-success.component';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -16,20 +17,25 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = this.fb.group({
     email: ['', Validators.email],
-    password: ['', Validators.required]
+    password: ['', Validators.required],
+    remember: [true]
   });
 
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     public dialog: MatDialog,
-    private router: Router
-  ) { }
+    private router: Router,
+    private cookieService: CookieService
+  ) {
+    this.loadSavedLogs();
+  }
 
   ngOnInit() {
   }
 
   submit() {
+    this.rememberMe();
     LoadingService.on('Connexion en cours');
     this.auth.signin(this.loginForm.value)
     .then(res => {
@@ -48,6 +54,26 @@ export class LoginComponent implements OnInit {
       width: '85%',
       panelClass: ['animated', 'bounceIn', 'faster']
     });
+  }
+
+  rememberMe() {
+
+    if (this.loginForm.value.remember) {
+      this.cookieService.set( 'savedLogs', JSON.stringify({
+        email: this.loginForm.value.email,
+        password: this.loginForm.value.password,
+      }));
+    } else {
+      this.cookieService.delete('savedLogs');
+    }
+  }
+
+  loadSavedLogs() {
+    if (this.cookieService.check('savedLogs')) {
+      const logs = JSON.parse(this.cookieService.get('savedLogs'));
+      this.loginForm.controls['email'].setValue(logs.email);
+      this.loginForm.controls['password'].setValue(logs.password);
+    }
   }
 
   openSuccessDialog(): void {

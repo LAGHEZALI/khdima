@@ -1,22 +1,12 @@
-<div id="wall-div" fxLayout="column" fxLayoutAlign="start center" >
+<div id="wall-div" >
 
-  <div style="margin-top: 25px;">
-    <mat-form-field class="example-form-field">
-      <input matInput type="text" placeholder="Recherche" [(ngModel)]="value">
-      <button color="primary" mat-raised-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>search</mat-icon>
-      </button>
-    </mat-form-field>
-  </div>
-
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div *ngFor="let post of posts | async" class="swiper-slide">
-        <app-post></app-post>
-      </div>
+  
+  <cdk-virtual-scroll-viewport itemSize="300">
+    <div *cdkVirtualFor="let post of postsObservable | async;">
+      <app-post [data]="post"></app-post>
     </div>
-    <div style="position:relative; top: 23px" class="swiper-pagination"></div>
-  </div>
+
+  </cdk-virtual-scroll-viewport>
 
 </div>
 

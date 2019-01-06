@@ -1,12 +1,14 @@
 #wall-div {
-  height: 90%;
+  height: 95%;
+  overflow: hidden;
 }
 
-.swiper-container {
-  width: 300px;
-  height: 500px;
-}
-.swiper-slide {
-  background-position: center;
-  background-size: cover;
+cdk-virtual-scroll-viewport {
+  height: 90%;
+
+  li {
+    height: 100px;
+  }
+
+
 }

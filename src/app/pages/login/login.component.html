@@ -17,9 +17,11 @@
             Ce champ est <strong>Obligatoire</strong>
           </mat-error>
         </mat-form-field>
+
+        <mat-slide-toggle formControlName="remember" color="primary">Se souvenir de moi</mat-slide-toggle>
   
         <div>
-            <button class="submit" mat-raised-button [disabled]="!loginForm.valid" color="primary">Se connecter</button>
+            <button class="submit w3-margin" mat-raised-button [disabled]="!loginForm.valid" color="primary">Se connecter</button>
         </div>
       </form>
       <span style="float: right">
