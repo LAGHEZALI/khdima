@@ -1,4 +1,12 @@
 <div id="home-div">
   <h3>Home Works Again !</h3>
+  <select [(ngModel)]="translationService.language">
+    <option *ngFor="let language of translationService.languages" [ngValue]="language">{{language}}</option>
+  </select>
+  
+  <p>
+    {{'Email' | translate}}
+  </p>
 </div>
+
 

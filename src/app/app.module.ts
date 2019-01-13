@@ -23,7 +23,8 @@ import { RegisterErrorComponent } from './layouts/modals/register-error/register
 import { RegisterSuccessComponent } from './layouts/modals/register-success/register-success.component';
 import { PostComponent } from './pages/wall/post/post.component';
 import { WavesurferComponent } from './layouts/modals/wavesurfer/wavesurfer.component';
-
+import { TranslatePipe } from './shared/pipes/translate.pipe';
+import { TranslationService } from './shared/pipes/translation.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { WavesurferComponent } from './layouts/modals/wavesurfer/wavesurfer.comp
     LoginSuccessComponent,
     RegisterErrorComponent,
     RegisterSuccessComponent,
-    WavesurferComponent
+    WavesurferComponent,
+    TranslatePipe
   ],
   entryComponents: [
     //  bottom sheets
@@ -62,7 +64,7 @@ import { WavesurferComponent } from './layouts/modals/wavesurfer/wavesurfer.comp
     SharedModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [ TranslationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

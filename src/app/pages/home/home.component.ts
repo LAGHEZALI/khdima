@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { LoadingService } from 'src/app/shared/services/loading.service';
-
+import { TranslationService } from './../../shared/pipes/translation.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,7 +8,7 @@ import { LoadingService } from 'src/app/shared/services/loading.service';
 })
 export class HomeComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(private translationService: TranslationService) { }
 
   ngOnInit() {
   }
