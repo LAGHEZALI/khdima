@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
+import { TranslationService } from './../../../shared/pipes/translation.service';
 import * as WaveSurfer from 'wavesurfer.js';
 
 let wavesurfer: WaveSurfer = Object.create(WaveSurfer);
@@ -16,7 +16,7 @@ export class WavesurferComponent implements OnInit {
   btnPlayColor = 'primary';
   btnStopColor = 'accent';
 
-  constructor(
+  constructor(private translationService: TranslationService,
     public dialogRef: MatDialogRef<WavesurferComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string
   ) {

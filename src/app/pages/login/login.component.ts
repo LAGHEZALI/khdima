@@ -7,7 +7,7 @@ import { LoadingService } from 'src/app/shared/services/loading.service';
 import { LoginSuccessComponent } from 'src/app/layouts/modals/login-success/login-success.component';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-
+import { TranslationService } from './../../shared/pipes/translation.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     private auth: AuthService,
     public dialog: MatDialog,
     private router: Router,
-    private cookieService: CookieService
+    private cookieService: CookieService,private translationService: TranslationService
   ) {
     this.loadSavedLogs();
   }

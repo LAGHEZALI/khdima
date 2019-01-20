@@ -3,14 +3,14 @@
     <span style="color: #64dd17; margin: 10px">
       <i class="fas fa-check-circle"></i>
     </span>
-    Vous êtes Inscrit
+    {{"Vous êtes Inscrit"| translate}}
   </h1>
   <div id="content" mat-dialog-content>
-    Vous pouvez désormais vous connecter.
+    {{"Vous pouvez désormais vous connecter."|translate}}
   </div>
   <div fxLayout="row" fxLayoutAlign="space-evenly center" mat-dialog-actions>
-    <button color="primary" mat-raised-button (click)="close()">Fermer</button><br>
-    <button color="accent" mat-raised-button (click)="login()">Se connecter</button>
+    <button color="primary" mat-raised-button (click)="close()">{{'Fermer'|translate}}</button><br>
+    <button color="accent" mat-raised-button (click)="login()">{{'Se connecter'|translate}}</button>
   </div>
 </div>
   

@@ -5,40 +5,40 @@
     <form class="full-width" fxLayout="column" fxLayoutAlign="space-evenly center" (ngSubmit)="submit()" [formGroup]="registerForm">
 
       <mat-form-field class="full-width big-font" >
-        <input class="validate" matInput placeholder="Email" formControlName="email">
+        <input class="validate" matInput placeholder="{{'Email' | translate}}" formControlName="email">
         <mat-error class="small-font" *ngIf="registerForm.controls.email.hasError('email')">
-          Veuillez entrer un email valide
+          {{'Veuillez entrer un email valide'| translate }}
         </mat-error>
       </mat-form-field>
     
       <mat-form-field class="full-width big-font">
-        <input matInput type="password" placeholder="Mot de passe" formControlName="password">
+        <input matInput type="password" placeholder="{{'Mot de passe'| translate}}" formControlName="password">
         <mat-error  class="small-font" *ngIf="registerForm.controls.password.hasError('required')">
-          Ce champ est <strong>Obligatoire</strong>
+          {{'Ce champ est' |translate}}<strong>{{'Obligatoire'| translate}}</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width big-font">
-        <input matInput type="text" placeholder="Nom Complet" formControlName="displayName">
+        <input matInput type="text" placeholder="{{'Nom complet'| translate}}" formControlName="displayName">
         <mat-error  class="small-font" *ngIf="registerForm.controls.displayName.hasError('required')">
-          Ce champ est <strong>Obligatoire</strong>
+          {{'Ce champ est' |translate}}<strong>{{'Obligatoire'| translate}}</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width big-font">
-        <input matInput type="number" placeholder="Numero de Téléphone" formControlName="phoneNumber">
+        <input matInput  placeholder="{{'Numero de Telephone'||translate}}" formControlName="phoneNumber">
         <mat-error  class="small-font" *ngIf="registerForm.controls.phoneNumber.hasError('required')">
-          Ce champ est <strong>Obligatoire</strong>
+          {{'Ce champ est' |translate}}<strong>{{'Obligatoire'| translate}}</strong>
         </mat-error>
       </mat-form-field>
   
       <div>
-          <button class="submit" mat-raised-button type="submit" [disabled]="!registerForm.valid" color="primary">S'inscrire</button>
+          <button class="submit" mat-raised-button type="submit" [disabled]="!registerForm.valid" color="primary">{{"S'inscrire"| translate}}</button>
       </div>
     </form>
 
     <span style="float: right">
-        J'ai déja un compte,  <a mat-button color="primary" style="padding:0 0; margin:0 0" routerLink="/login">S'autentifier</a>
+       {{"J'ai déja un compte, "|translate}}  <a mat-button color="primary" style="padding:0 0; margin:0 0" routerLink="/login">{{'Se connecter'|translate}}</a>
     </span>
   </mat-card>
     

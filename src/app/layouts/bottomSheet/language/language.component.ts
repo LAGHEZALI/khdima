@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material';
-
+import { TranslationService } from '../../../shared/pipes/translation.service';
 @Component({
   selector: 'app-language',
   templateUrl: './language.component.html',
@@ -14,7 +14,7 @@ export class LanguageComponent implements OnInit {
     {name: 'English', flag: 'gb', raised: false}
   ];
 
-  constructor(
+  constructor(private translationService: TranslationService,
     private bottomSheetRef: MatBottomSheetRef<LanguageComponent>
   ) { }
 

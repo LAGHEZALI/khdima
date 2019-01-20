@@ -9,33 +9,92 @@ export class TranslationSet {
 @Injectable()
 export class TranslationService {
 
-    public languages = ['fr','ar'];
+    public languages = ['Français','Arabe','English'];
 
-    public language = 'fr';
+    public language = 'français';
 
     private dictionary: {[key: string]: TranslationSet} = {
-        'ar' : {
-            languange: 'ar',
+        'Arabe' : {
+            languange: 'Arabe',
             values: {
                 'Email' : 'البريد الإلكتروني',
-                'mot de passe' :'كلمة السر',
+                'Mot de passe' :'كلمة السر',
                 'se souvenir de moi' : 'يتذكرني',
-                'se connecter' : 'دخول',
-                'je n ai pas de compte' : 'ليس لدي حساب ',
-                's inscrir' : 'تسجيل',
-                'Nom complet': 'الاسم الكامل'
+                'Se connecter' : 'دخول',
+                "Je n'ai pas encore de compte," : 'ليس لدي حساب ',
+                "S'inscrire"  : 'تسجيل',
+                'Nom complet': 'الاسم الكامل',
+                'Ce champ est ':'هدا الحقل اجباري',
+                'obligatoire':' اجباري', 
+                 'Veuillez entrer un email valide ':'يرجى إدخال بريد إلكتروني صالح',
+                 "Numero de Telephone" : 'رقم الهاتف',
+                 "J'ai déja un compte,":'لدي بالفعل حساب ،',
+                 "Echec de connection":'خطأ اتصال' ,
+                 "Vos identifiants sont incorrectes. Veuillez ressayer.": 'بيانات الاعتماد الخاصة بك غير صحيحة. المرجو اعادة المحاولة.',
+                 "Fermer":'fermer',
+                 "Echec d'inscription":'فشل في التسجيل',
+                 "Veuillez ressayer.":'المرجو اعادة المحاولة.',
+                 "Votre email ou numéro de Téléphone sont déja existants.":'بريدك الإلكتروني أو رقم هاتفك موجود بالفعل.',
+                 "Enregistrement Vocal":'تسجيل صوتي',
+                 "Vous êtes Inscrit":'أنت مسجل',
+                 "Vous pouvez désormais vous connecter.":'يمكنك الآن الاتصال.'
+            
+
            }
         },
-        'fr' : {
-            languange: 'fr',
+        'Français' : {
+            languange: 'Français',
             values: {
                 'Email' : 'Email ',
-                'mot de passe' :'Mot de pase',
+                'Mot de passe' :'Mot de pase',
                 'se souvenir de moi' : 'Se souvenir de moi',
-                'se connecter' : 'Se connecter ',
-                'je n ai pas de compte' : ' Je nai pas de compte ',
-                's inscrire' : "S'inscrire",
-                'Nom complet': 'Nom complet'
+                'Se connecter' : 'Se connecter ',
+                "Je n'ai pas encore de compte," : ' Je nai pas de compte ',
+                "S'inscrire" : "S'inscrire",
+                'Nom complet': 'Nom complet',
+                'Ce champ est ':'Ce champ est ',
+                'obligatoire': 'obligatoire',
+                'Veuillez entrer un email valide ':'Veuillez entrer un email valide',
+                "Numero de Telephone" : 'Numero de Téléphone',
+                "J'ai déja un compte,":" J'ai déja un compte,",
+                "Echec de connection":'Echec de connection' ,
+                 "Vos identifiants sont incorrectes. Veuillez ressayer.": 'Vos identifiants sont incorrectes. Veuillez ressayer.',
+                 "Fermer":'Fermer',
+                 "Echec d'inscription":"Echec d'inscription",
+                 "Veuillez ressayer.":'Veuillez ressayer.',
+                 "Votre email ou numéro de Téléphone sont déja existants.":'Votre email ou numéro de Téléphone sont déja existants.',
+                 "Enregistrement Vocal":'Enregistrement Vocal',
+                 "Vous êtes Inscrit":'Vous êtes Inscrit',
+                 "Vous pouvez désormais vous connecter.":'Vous pouvez désormais vous connecter.'
+
+            }
+        }
+        ,
+        'English' : {
+            languange: 'English',
+            values: {
+                'Email' : 'Email ',
+                'Mot de passe' :'Password',
+                'se souvenir de moi' : 'Remember me',
+                'Se connecter' : 'Login ',
+                "Je n'ai pas encore de compte," : "I don't have an account ",
+                "S'inscrire"  : "Register",
+                'Nom complet': 'Full name',
+                'Ce champ est ':'This field is ',
+                'obigatoire': 'required',
+                'Veuillez entrer un email valide ':'Please enter a valid email',
+                'Numero de Telephone' : 'Phone number',
+                "J'ai déja un compte,":'I already have an account ،',
+                "Echec de connection":'Connection failure' ,
+                "Vos identifiants sont incorrectes. Veuillez ressayer.": 'Your informations are incorrect. Try Again.',
+                "Fermer":'Close',
+                "Echec d'inscription":"Failure to register",
+                "Veuillez ressayer.":'Try again',
+                "Votre email ou numéro de Téléphone sont déja existants.":'Your email or phone number are already existing.',
+                "Enregistrement Vocal":'Voice Recording',
+                "Vous êtes Inscrit":'You are registered',
+                "Vous pouvez désormais vous connecter.":'You can now connect.'
+                
             }
         }
     };
