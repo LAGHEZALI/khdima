@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyDAdwf86oKXiMHYTyO_VvAUGpzuwyttnzQ',
-    authDomain: 'khdima-ceb5e.firebaseapp.com',
-    databaseURL: 'https://khdima-ceb5e.firebaseio.com',
-    projectId: 'khdima-ceb5e',
-    storageBucket: 'khdima-ceb5e.appspot.com',
-    messagingSenderId: '385317344106'
+    apiKey: 'AIzaSyD24il4nVDR2biXnDazH0NTfxD2EL-V_dc',
+    authDomain: 'khdima-cc985.firebaseapp.com',
+    databaseURL: 'https://khdima-cc985.firebaseio.com',
+    projectId: 'khdima-cc985',
+    storageBucket: 'khdima-cc985.appspot.com',
+    messagingSenderId: '334479325269'
   }
 };
 

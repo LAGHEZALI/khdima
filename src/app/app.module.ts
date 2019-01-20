@@ -23,6 +23,7 @@ import { RegisterErrorComponent } from './layouts/modals/register-error/register
 import { RegisterSuccessComponent } from './layouts/modals/register-success/register-success.component';
 import { PostComponent } from './pages/wall/post/post.component';
 import { WavesurferComponent } from './layouts/modals/wavesurfer/wavesurfer.component';
+import { GaleryComponent } from './layouts/modals/galery/galery.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { WavesurferComponent } from './layouts/modals/wavesurfer/wavesurfer.comp
     LoginSuccessComponent,
     RegisterErrorComponent,
     RegisterSuccessComponent,
-    WavesurferComponent
+    WavesurferComponent,
+    GaleryComponent
   ],
   entryComponents: [
     //  bottom sheets
@@ -54,7 +56,8 @@ import { WavesurferComponent } from './layouts/modals/wavesurfer/wavesurfer.comp
     LoginSuccessComponent,
     RegisterErrorComponent,
     RegisterSuccessComponent,
-    WavesurferComponent
+    WavesurferComponent,
+    GaleryComponent
   ],
   imports: [
     BrowserModule,

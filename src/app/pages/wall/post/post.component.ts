@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { WavesurferComponent } from 'src/app/layouts/modals/wavesurfer/wavesurfer.component';
 import { MatDialog } from '@angular/material';
+import { GaleryComponent } from 'src/app/layouts/modals/galery/galery.component';
 
 @Component({
   selector: 'app-post',
@@ -45,6 +46,14 @@ export class PostComponent implements OnInit, AfterViewInit {
       panelClass: ['animated', 'bounceIn', 'faster'],
       disableClose: true,
       data: this.data.recordUrl
+    });
+  }
+
+  galery() {
+    this.dialog.open(GaleryComponent, {
+      width: '95%',
+      panelClass: ['animated', 'faceIn', 'faster'],
+      data: this.data.imagesUrls
     });
   }
 

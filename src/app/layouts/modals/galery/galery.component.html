@@ -1,0 +1,48 @@
+<div id="galery-div">
+  <h1 style="color: #f76b0e;" mat-dialog-title>
+    <span style="color: #f76b0e; margin: 10px">
+      <i class="fas fa-images"></i>
+    </span>
+    Galerie
+  </h1>
+  
+  <div id="content" mat-dialog-content>
+
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+
+        <div *ngFor="let pic of data" class="swiper-slide">
+            <div class="swiper-zoom-container" >
+              <img class="w3-round w3-border w3-padding w3-card-4 w3-image" src="{{pic}}">
+            </div>
+        </div>
+      
+      </div>
+    </div>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-evenly center" mat-dialog-actions>
+
+    <button (click)="prev()" color="primary" mat-mini-fab>
+      <span class="w3-xlarge">
+        <i class="fas fa-angle-left"></i>
+      </span>
+    </button>
+
+    <button (click)="close()" class="w3-red"  mat-mini-fab>
+      <span class="w3-xlarge">
+        <i class="fas fa-times"></i>
+      </span>
+    </button>
+
+    <button (click)="next()" color="primary" mat-mini-fab>
+      <span class="w3-xlarge">
+        <i class="fas fa-angle-right"></i>
+      </span>
+    </button>
+    
+  </div>
+</div>
+    
+    
