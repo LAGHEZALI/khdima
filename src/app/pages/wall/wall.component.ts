@@ -2,7 +2,6 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { PostService } from 'src/app/shared/services/post.service';
 import { Observable } from 'rxjs';
-import { Post } from 'src/app/shared/models/post';
 
 @Component({
   selector: 'app-wall',
@@ -24,5 +23,4 @@ export class WallComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
   }
-
 }

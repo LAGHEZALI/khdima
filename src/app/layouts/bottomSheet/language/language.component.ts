@@ -22,7 +22,6 @@ export class LanguageComponent implements OnInit {
   }
 
   close() {
-    console.log('click');
     this.bottomSheetRef.dismiss();
   }
 

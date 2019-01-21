@@ -24,6 +24,7 @@ import { RegisterSuccessComponent } from './layouts/modals/register-success/regi
 import { PostComponent } from './pages/wall/post/post.component';
 import { WavesurferComponent } from './layouts/modals/wavesurfer/wavesurfer.component';
 import { GaleryComponent } from './layouts/modals/galery/galery.component';
+import { KhdimaMenuComponent } from './layouts/bottomSheet/khdima-menu/khdima-menu.component';
 
 @NgModule({
   declarations: [
@@ -40,17 +41,20 @@ import { GaleryComponent } from './layouts/modals/galery/galery.component';
     PostComponent,
     //  bottom sheets
     LanguageComponent,
+    KhdimaMenuComponent,
     //  Dialogs
     LoginErrorComponent,
     LoginSuccessComponent,
     RegisterErrorComponent,
     RegisterSuccessComponent,
     WavesurferComponent,
-    GaleryComponent
+    GaleryComponent,
+    KhdimaMenuComponent
   ],
   entryComponents: [
     //  bottom sheets
     LanguageComponent,
+    KhdimaMenuComponent,
     //  Dialogs
     LoginErrorComponent,
     LoginSuccessComponent,

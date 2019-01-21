@@ -1,4 +1,4 @@
-<mat-toolbar  fxLayout="row" fxLayoutAlign="space-around center" class="w3-bottom" color="primary">
+<mat-toolbar  fxLayout="row" fxLayoutAlign="space-around center" class="w3-bottom animated slideInUp faster" color="primary">
 
   <button class="noshadow" color="primary" mat-mini-fab>
     <span class="w3-xlarge">
@@ -12,7 +12,7 @@
       </span>
     </button>
   
-  <button class="shadow" style="width: 45px; height:45px;" color="primary" mat-mini-fab>
+  <button (click)="openMenu()" class="shadow" style="width: 45px; height:45px;" color="primary" mat-mini-fab>
     <img style="padding: 0 0; margin: 0 0;" src="assets/images/khdima-btn.png" width="35px" class="w3-image" />
   </button>
   

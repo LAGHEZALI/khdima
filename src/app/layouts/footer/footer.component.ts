@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material';
+import { KhdimaMenuComponent } from '../bottomSheet/khdima-menu/khdima-menu.component';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private langSheet: MatBottomSheet,
+  ) { }
 
   ngOnInit() {
+  }
+
+  openMenu() {
+    this.langSheet.open(KhdimaMenuComponent);
   }
 
 }

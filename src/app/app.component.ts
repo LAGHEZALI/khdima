@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { InitService } from './shared/services/init.service';
 import { ThemeService } from './shared/services/theme.service';
+import { Router } from '@angular/router';
 
 ThemeService.theme.subscribe(value => theme = value);
 let theme = false;
@@ -11,9 +12,19 @@ let theme = false;
 })
 export class AppComponent {
 
+  showFooter: boolean;
+
   constructor(
-    private init: InitService
+    private init: InitService,
+    private router: Router
   ) {
+    this.router.events.subscribe(() => {
+      if (this.router.url === '/home' || this.router.url === '/error') {
+        this.showFooter = false;
+      } else {
+        this.showFooter = true;
+      }
+    });
   }
 
   get theme() {
