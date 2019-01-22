@@ -19,7 +19,7 @@ export class AppComponent {
     private router: Router
   ) {
     this.router.events.subscribe(() => {
-      if (this.router.url === '/home' || this.router.url === '/error') {
+      if (this.router.url === '/home' || this.router.url === '/login' || this.router.url === '/register') {
         this.showFooter = false;
       } else {
         this.showFooter = true;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-khdima-menu',
@@ -8,15 +9,9 @@ import { MatBottomSheetRef } from '@angular/material';
 })
 export class KhdimaMenuComponent implements OnInit {
 
-  options = [
-    {name: 'Recherche / Filtrer', icon: 'search'},
-    {name: 'Ajouter un poste', icon: 'plus-circle'},
-    {name: 'Classement Metier', icon: 'sort-amount-up'},
-    {name: 'Reporter un bug', icon: 'bug'},
-  ];
-
   constructor(
-    private bottomSheetRef: MatBottomSheetRef<KhdimaMenuComponent>
+    private bottomSheetRef: MatBottomSheetRef<KhdimaMenuComponent>,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -24,6 +19,10 @@ export class KhdimaMenuComponent implements OnInit {
 
   close() {
     this.bottomSheetRef.dismiss();
+  }
+
+  addPost() {
+    this.router.navigate(['add-post']);
   }
 
 }

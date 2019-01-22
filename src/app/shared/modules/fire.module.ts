@@ -6,6 +6,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from 'src/environments/environment';
 
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import * as firebase from 'firebase/app';
 
 @NgModule({
@@ -14,12 +16,14 @@ import * as firebase from 'firebase/app';
     CommonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   exports: [
     AngularFireModule,
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ]
 })
 export class FireModule {

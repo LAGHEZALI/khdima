@@ -1,0 +1,28 @@
+#add-post-div {
+    height: 86%;
+    background: #34515e;
+}
+
+.card {
+    width: 80%;
+}
+  
+.full-width {
+    width: 90%;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    background-color: #333e44;
+    display: inline-block;
+    color: azure;
+    cursor: pointer;
+}

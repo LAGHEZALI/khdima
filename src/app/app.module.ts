@@ -25,6 +25,7 @@ import { PostComponent } from './pages/wall/post/post.component';
 import { WavesurferComponent } from './layouts/modals/wavesurfer/wavesurfer.component';
 import { GaleryComponent } from './layouts/modals/galery/galery.component';
 import { KhdimaMenuComponent } from './layouts/bottomSheet/khdima-menu/khdima-menu.component';
+import { AddPostComponent } from './pages/add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { KhdimaMenuComponent } from './layouts/bottomSheet/khdima-menu/khdima-me
     WallComponent,
     LoadingComponent,
     PostComponent,
+    AddPostComponent,
     //  bottom sheets
     LanguageComponent,
     KhdimaMenuComponent,
@@ -49,7 +51,7 @@ import { KhdimaMenuComponent } from './layouts/bottomSheet/khdima-menu/khdima-me
     RegisterSuccessComponent,
     WavesurferComponent,
     GaleryComponent,
-    KhdimaMenuComponent
+    KhdimaMenuComponent,
   ],
   entryComponents: [
     //  bottom sheets

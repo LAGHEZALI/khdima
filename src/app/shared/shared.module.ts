@@ -8,6 +8,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { PretyJsonPipe } from './pipes/prety-json.pipe';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { CookieService } from 'ngx-cookie-service';
+import { UploadsService } from './services/uploads.service';
 
 const modules = [
   CommonModule,
@@ -20,7 +21,8 @@ const modules = [
 ];
 
 const services = [
-  CookieService
+  CookieService,
+  UploadsService
 ];
 
 const declarations = [
