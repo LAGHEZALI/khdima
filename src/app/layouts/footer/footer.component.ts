@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material';
 import { KhdimaMenuComponent } from '../bottomSheet/khdima-menu/khdima-menu.component';
+import { UserBsComponent } from '../bottomSheet/user-bs/user-bs.component';
 
 @Component({
   selector: 'app-footer',
@@ -10,14 +11,18 @@ import { KhdimaMenuComponent } from '../bottomSheet/khdima-menu/khdima-menu.comp
 export class FooterComponent implements OnInit {
 
   constructor(
-    private langSheet: MatBottomSheet,
+    private sheet: MatBottomSheet,
   ) { }
 
   ngOnInit() {
   }
 
   openMenu() {
-    this.langSheet.open(KhdimaMenuComponent);
+    this.sheet.open(KhdimaMenuComponent);
+  }
+
+  openUser() {
+    this.sheet.open(UserBsComponent);
   }
 
 }

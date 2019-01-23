@@ -29,11 +29,10 @@ export class KhdimaMenuComponent implements OnInit {
   }
 
   search() {
-    this.close();
     this.dialog.open(SearchComponent, {
-      width: '70%',
-      panelClass: ['animated', 'bounceIn', 'faster'],
+      width: '95%',
       disableClose: true
     });
+    this.close();
   }
 }

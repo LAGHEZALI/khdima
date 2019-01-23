@@ -27,6 +27,7 @@ import { GaleryComponent } from './layouts/modals/galery/galery.component';
 import { KhdimaMenuComponent } from './layouts/bottomSheet/khdima-menu/khdima-menu.component';
 import { AddPostComponent } from './pages/add-post/add-post.component';
 import { SearchComponent } from './layouts/modals/search/search.component';
+import { UserBsComponent } from './layouts/bottomSheet/user-bs/user-bs.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { SearchComponent } from './layouts/modals/search/search.component';
     //  bottom sheets
     LanguageComponent,
     KhdimaMenuComponent,
+    UserBsComponent,
     //  Dialogs
     LoginErrorComponent,
     LoginSuccessComponent,
@@ -58,6 +60,7 @@ import { SearchComponent } from './layouts/modals/search/search.component';
     //  bottom sheets
     LanguageComponent,
     KhdimaMenuComponent,
+    UserBsComponent,
     //  Dialogs
     LoginErrorComponent,
     LoginSuccessComponent,
