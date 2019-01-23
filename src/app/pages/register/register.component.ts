@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 import { RegisterErrorComponent } from 'src/app/layouts/modals/register-error/register-error.component';
 import { RegisterSuccessComponent } from 'src/app/layouts/modals/register-success/register-success.component';
 import { LoadingService } from 'src/app/shared/services/loading.service';
-
+import { TranslationService } from '../../shared/services/translation.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -23,7 +23,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private translationService: TranslationService
   ) { }
 
   ngOnInit() {

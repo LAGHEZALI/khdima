@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-
+import { TranslationService } from '../../../shared/services/translation.service';
 @Component({
   selector: 'app-login-error',
   templateUrl: './login-error.component.html',
@@ -8,7 +8,7 @@ import { MatDialogRef } from '@angular/material';
 })
 export class LoginErrorComponent implements OnInit {
 
-  constructor(
+  constructor(private translationService: TranslationService,
     public dialogRef: MatDialogRef<LoginErrorComponent>
   ) { }
 

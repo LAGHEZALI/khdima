@@ -1,5 +1,4 @@
-<div style="z-index:6">
-
+<div style="z-index:6"> 
   <mat-list>
 
     <h4 class="center">Changer la Langue</h4>
@@ -11,7 +10,7 @@
             
             <button (click)="close()" *ngIf="lang.raised; else notRaised" mat-raised-button class="w3-block" color="primary">{{lang.name}}</button>
             <ng-template #notRaised>
-                <button  mat-button class="w3-block" color="primary">{{lang.name}}</button>
+                <button (click)="switch(lang.click)"  mat-button class="w3-block" color="primary">{{lang.name}}</button>
             </ng-template>
           </mat-list-item>
     </div>

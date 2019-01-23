@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
-
+import { TranslationService } from '../../../shared/services/translation.service';
 @Component({
   selector: 'app-register-success',
   templateUrl: './register-success.component.html',
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterSuccessComponent implements OnInit {
 
-  constructor(
+  constructor(private translationService: TranslationService,
     public dialogRef: MatDialogRef<RegisterSuccessComponent>,
     private router: Router
   ) { }

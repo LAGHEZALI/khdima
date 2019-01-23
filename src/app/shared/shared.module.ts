@@ -9,6 +9,8 @@ import { PretyJsonPipe } from './pipes/prety-json.pipe';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { CookieService } from 'ngx-cookie-service';
 import { UploadsService } from './services/uploads.service';
+import { TranslationService } from './services/translation.service';
+import { TranslatePipe } from './pipes/translate.pipe';
 
 const modules = [
   CommonModule,
@@ -22,12 +24,14 @@ const modules = [
 
 const services = [
   CookieService,
-  UploadsService
+  UploadsService,
+  TranslationService
 ];
 
 const declarations = [
   PretyJsonPipe,
-  TimeAgoPipe
+  TimeAgoPipe,
+  TranslatePipe
 ];
 
 @NgModule({

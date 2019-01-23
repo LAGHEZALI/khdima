@@ -14,21 +14,21 @@
       <mat-form-field class="full-width big-font">
         <input matInput type="password" placeholder="Mot de passe" formControlName="password">
         <mat-error  class="small-font" *ngIf="registerForm.controls.password.hasError('required')">
-          Ce champ est <strong>Obligatoire</strong>
+          Ce champ est<strong>Obligatoire</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width big-font">
-        <input matInput type="text" placeholder="Nom Complet" formControlName="displayName">
+        <input matInput type="text" placeholder="Nom complet" formControlName="displayName">
         <mat-error  class="small-font" *ngIf="registerForm.controls.displayName.hasError('required')">
-          Ce champ est <strong>Obligatoire</strong>
+          Ce champ est<strong>Obligatoire</strong>
         </mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width big-font">
-        <input matInput type="number" placeholder="Numero de Téléphone" formControlName="phoneNumber">
+        <input matInput  placeholder="Numero de Telephone" formControlName="phoneNumber">
         <mat-error  class="small-font" *ngIf="registerForm.controls.phoneNumber.hasError('required')">
-          Ce champ est <strong>Obligatoire</strong>
+          Ce champ est<strong>Obligatoire</strong>
         </mat-error>
       </mat-form-field>
   
@@ -38,7 +38,7 @@
     </form>
 
     <span style="float: right">
-        J'ai déja un compte,  <a mat-button color="primary" style="padding:0 0; margin:0 0" routerLink="/login">S'autentifier</a>
+      J'ai déja un compte, <a mat-button color="primary" style="padding:0 0; margin:0 0" routerLink="/login">Se connecter</a>
     </span>
   </mat-card>
     
