@@ -26,6 +26,7 @@ import { WavesurferComponent } from './layouts/modals/wavesurfer/wavesurfer.comp
 import { GaleryComponent } from './layouts/modals/galery/galery.component';
 import { KhdimaMenuComponent } from './layouts/bottomSheet/khdima-menu/khdima-menu.component';
 import { AddPostComponent } from './pages/add-post/add-post.component';
+import { SearchComponent } from './layouts/modals/search/search.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { AddPostComponent } from './pages/add-post/add-post.component';
     RegisterSuccessComponent,
     WavesurferComponent,
     GaleryComponent,
-    KhdimaMenuComponent,
+    SearchComponent,
   ],
   entryComponents: [
     //  bottom sheets
@@ -63,7 +64,9 @@ import { AddPostComponent } from './pages/add-post/add-post.component';
     RegisterErrorComponent,
     RegisterSuccessComponent,
     WavesurferComponent,
-    GaleryComponent
+    GaleryComponent,
+    SearchComponent,
+
   ],
   imports: [
     BrowserModule,

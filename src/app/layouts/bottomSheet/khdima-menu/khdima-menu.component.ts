@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatBottomSheetRef } from '@angular/material';
+import { MatBottomSheetRef, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { SearchComponent } from '../../modals/search/search.component';
 
 @Component({
   selector: 'app-khdima-menu',
@@ -11,7 +12,8 @@ export class KhdimaMenuComponent implements OnInit {
 
   constructor(
     private bottomSheetRef: MatBottomSheetRef<KhdimaMenuComponent>,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -23,6 +25,15 @@ export class KhdimaMenuComponent implements OnInit {
 
   addPost() {
     this.router.navigate(['add-post']);
+    this.close();
   }
 
+  search() {
+    this.close();
+    this.dialog.open(SearchComponent, {
+      width: '70%',
+      panelClass: ['animated', 'bounceIn', 'faster'],
+      disableClose: true
+    });
+  }
 }
