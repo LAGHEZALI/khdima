@@ -1,8 +1,8 @@
 class Wavesurfer {
 
-    static wavesurfer;
-
     static initMic() {
+
+        WaveSurfer.wavesurfer;
         
         WaveSurfer.wavesurfer = WaveSurfer.create({
             container     : '#wavemic',

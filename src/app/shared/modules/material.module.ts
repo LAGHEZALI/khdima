@@ -28,7 +28,8 @@ import {
     MatBadgeModule,
     MatSlideToggleModule,
     MatChipsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSliderModule
 } from '@angular/material';
 
 const modules = [
@@ -59,7 +60,8 @@ const modules = [
   MatBadgeModule,
   MatSlideToggleModule,
   MatChipsModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSliderModule
 ];
 
 @NgModule({

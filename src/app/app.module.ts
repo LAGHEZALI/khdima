@@ -29,6 +29,7 @@ import { AddPostComponent } from './pages/add-post/add-post.component';
 import { SearchComponent } from './layouts/modals/search/search.component';
 import { UserBsComponent } from './layouts/bottomSheet/user-bs/user-bs.component';
 import { PolicyComponent } from './layouts/bottomSheet/policy/policy.component';
+import { AddBidComponent } from './layouts/modals/add-bid/add-bid.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { PolicyComponent } from './layouts/bottomSheet/policy/policy.component';
     WavesurferComponent,
     GaleryComponent,
     SearchComponent,
+    AddBidComponent,
   ],
   entryComponents: [
     //  bottom sheets
@@ -72,7 +74,7 @@ import { PolicyComponent } from './layouts/bottomSheet/policy/policy.component';
     WavesurferComponent,
     GaleryComponent,
     SearchComponent,
-
+    AddBidComponent,
   ],
   imports: [
     BrowserModule,
