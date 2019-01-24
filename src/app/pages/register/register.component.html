@@ -4,38 +4,112 @@
   
     <form class="full-width" fxLayout="column" fxLayoutAlign="space-evenly center" (ngSubmit)="submit()" [formGroup]="registerForm">
 
-      <mat-form-field class="full-width big-font" >
-        <input class="validate" matInput placeholder="Email" formControlName="email">
-        <mat-error class="small-font" *ngIf="registerForm.controls.email.hasError('email')">
-          Veuillez entrer un email valide
+      <div class="w3-center w3-display-container imgdiv">
+        <input #file  id="file" name="file" type="file" class="inputfile" accept='image/*' (change)="preview(file.files)" />
+        
+        <img [src]="imgURL" class="w3-image img w3-card-4 w3-border" *ngIf="imgURL">
+
+        <div class="w3-display-bottomright w3-container hanono">
+          <button type="button" (click)="file.click()" style="background: #333e44" mat-mini-fab>
+            <span class="w3-large">
+              <i class="fas fa-user-edit"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Prénom" formControlName="firstName" required>
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="registerForm.controls.firstName.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
         </mat-error>
       </mat-form-field>
-    
-      <mat-form-field class="full-width big-font">
-        <input matInput type="password" placeholder="Mot de passe" formControlName="password">
-        <mat-error  class="small-font" *ngIf="registerForm.controls.password.hasError('required')">
-          Ce champ est<strong>Obligatoire</strong>
+      
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nom" formControlName="lastName" required>
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="registerForm.controls.lastName.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker" placeholder="Date de naissance" formControlName="birthday" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
+        <mat-error *ngIf="registerForm.controls.birthday.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width big-font">
-        <input matInput type="text" placeholder="Nom complet" formControlName="displayName">
-        <mat-error  class="small-font" *ngIf="registerForm.controls.displayName.hasError('required')">
-          Ce champ est<strong>Obligatoire</strong>
+      <mat-radio-group fxLayout="row" fxLayoutAlign="space-around center" formControlName="gender">
+        <mat-radio-button style="margin-right: 10px" value="male">Homme</mat-radio-button>
+        <mat-radio-button value="female">Femme</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Ville" aria-label="Number" matInput formControlName="city" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredCityOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-icon matSuffix>home</mat-icon>
+        <mat-error *ngIf="registerForm.controls.city.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width big-font">
-        <input matInput  placeholder="Numero de Telephone" formControlName="phoneNumber">
-        <mat-error  class="small-font" *ngIf="registerForm.controls.phoneNumber.hasError('required')">
-          Ce champ est<strong>Obligatoire</strong>
+      <mat-form-field class="example-full-width">
+        <span matPrefix>+212 &nbsp;</span>
+        <input type="tel" matInput placeholder="Numéro de Telephone" formControlName="phoneNumber">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-hint>Ex: +212 600000000 </mat-hint>
+        <mat-error *ngIf="registerForm.controls.phoneNumber.hasError('required') || registerForm.controls.phoneNumber.hasError('minLength')
+        || registerForm.controls.phoneNumber.hasError('maxLength')">
+          Numéro <strong>Non valide</strong>
         </mat-error>
       </mat-form-field>
-  
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="email">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="registerForm.controls.email.hasError('email') && !registerForm.controls.email.hasError('required')">
+          Email <strong>Non valide</strong>
+        </mat-error>
+        <mat-error *ngIf="registerForm.controls.email.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-hint>
+        <mat-checkbox class="w3-left" formControlName="emailCheck" (change)="onEmailToggle()">Je ne veux pas utiliser un email</mat-checkbox>
+      </mat-hint>
+
+      <mat-form-field class="example-full-width">
+        <input type="{{passwordHide}}" matInput placeholder="Mot de passe" formControlName="password">
+        <button class="w3-large" type='button' mat-button matSuffix mat-icon-button (click)="showHidePassword()">
+          <mat-icon *ngIf="passwordHide=='password'">visibility</mat-icon>
+          <mat-icon *ngIf="passwordHide=='text'">visibility_off</mat-icon>
+        </button>
+        <mat-hint>Entre 8 et 20 caractères </mat-hint>
+        <mat-error *ngIf="registerForm.controls.password.hasError('required') || registerForm.controls.password.hasError('minLength')
+        || registerForm.controls.password.hasError('maxLength')">
+          Mot de passe <strong>Non valide</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="policy">
+        J'ai lu et j'accepte les
+        <button type="button" (click)="showPolicy()" class="accept" mat-button color="primary">termes et conditions</button>
+      </mat-checkbox>
+
       <div>
-          <button class="submit" mat-raised-button type="submit" [disabled]="!registerForm.valid" color="primary">S'inscrire</button>
+          <button class="submit w3-margin" mat-raised-button type="submit" [disabled]="!registerForm.valid" color="primary">S'inscrire</button>
       </div>
     </form>
+
+    <mat-divider></mat-divider>
 
     <span style="float: right">
       J'ai déja un compte, <a mat-button color="primary" style="padding:0 0; margin:0 0" routerLink="/login">Se connecter</a>

@@ -27,7 +27,8 @@ import {
     MatDialogModule,
     MatBadgeModule,
     MatSlideToggleModule,
-    MatChipsModule
+    MatChipsModule,
+    MatNativeDateModule
 } from '@angular/material';
 
 const modules = [
@@ -57,7 +58,8 @@ const modules = [
   MatDialogModule,
   MatBadgeModule,
   MatSlideToggleModule,
-  MatChipsModule
+  MatChipsModule,
+  MatNativeDateModule
 ];
 
 @NgModule({
