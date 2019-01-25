@@ -1,0 +1,59 @@
+<div>
+    <h1 style="color: #f76b0e;" mat-dialog-title>
+      <span style="color: #f76b0e; margin: 10px">
+        <i class="fas fa-microphone"></i>
+      </span>
+      Enregistrement Vocal
+    </h1>
+    <div id="content" mat-dialog-content>
+
+      <div class="w3-margin w3-padding" id="mic"></div>
+
+      <div fxLayout="row" fxLayoutAlign="space-around center"  class="w3-margin w3-padding">
+
+        <button disabled="{{readyToPlay}}" (click)="record()" color="{{recColor}}" mat-mini-fab>
+          <span class="w3-large">
+            <i class="fas fa-{{recIcon}}"></i>
+          </span>
+        </button>
+      
+        <button disabled="{{!readyToPlay}}" (click)="play()" color="{{playColor}}" mat-mini-fab>
+          <span class="w3-large">
+            <i class="fas fa-{{playIcon}}"></i>
+          </span>
+        </button>
+    
+        <button disabled="{{!readyToPlay}}" (click)="stop()" color="{{stopColor}}" mat-mini-fab>
+          <span class="w3-large">
+            <i class="fas fa-stop"></i>
+          </span>
+        </button>
+    
+      </div>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" mat-dialog-actions>
+
+      <button (click)="erase()" color="accent" mat-mini-fab>
+        <span class="w3-large">
+          <i class="fas fa-eraser"></i>
+        </span>
+      </button>
+  
+      <button disabled="{{old || !readyToPlay}}" (click)="save()" color="primary" mat-mini-fab>
+        <span class="w3-large">
+          <i class="fas fa-check"></i>
+        </span>
+      </button>
+  
+      <button (click)="close()" class="w3-red"  mat-mini-fab>
+        <span class="w3-xlarge">
+          <i class="fas fa-times"></i>
+        </span>
+      </button>
+      
+    </div>
+  </div>
+      
+      

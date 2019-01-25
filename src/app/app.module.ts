@@ -30,6 +30,7 @@ import { SearchComponent } from './layouts/modals/search/search.component';
 import { UserBsComponent } from './layouts/bottomSheet/user-bs/user-bs.component';
 import { PolicyComponent } from './layouts/bottomSheet/policy/policy.component';
 import { AddBidComponent } from './layouts/modals/add-bid/add-bid.component';
+import { RecordComponent } from './layouts/modals/record/record.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AddBidComponent } from './layouts/modals/add-bid/add-bid.component';
     GaleryComponent,
     SearchComponent,
     AddBidComponent,
+    RecordComponent,
   ],
   entryComponents: [
     //  bottom sheets
@@ -75,6 +77,7 @@ import { AddBidComponent } from './layouts/modals/add-bid/add-bid.component';
     GaleryComponent,
     SearchComponent,
     AddBidComponent,
+    RecordComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,11 @@ declare module Scripts {
 
     export interface Wavesurfer {
         initMic(): void;
-        record(): void;
+        startRecording(): void;
+        stopRecording(): void;
+        play(): void;
+        stop(): void;
+        getAudioUrl(): string;
     }
 }
 

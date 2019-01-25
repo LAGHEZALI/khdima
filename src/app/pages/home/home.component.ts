@@ -1,5 +1,4 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +14,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
   }
-
-  on() {
-    LoadingService.on();
-  }
-
-  off() {
-    LoadingService.off();
-  }
-
 }

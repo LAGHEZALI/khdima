@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, from, of } from 'rxjs';
 import { map, startWith, delay } from 'rxjs/operators';
-import { Upload } from 'src/app/shared/models/upload';
 
-import { UploadsService } from '../../shared/services/uploads.service';
+import { MatDialog } from '@angular/material';
+import { RecordComponent } from 'src/app/layouts/modals/record/record.component';
 
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
   styleUrls: ['./add-post.component.scss']
 })
-export class AddPostComponent implements OnInit {
+export class AddPostComponent implements OnInit, AfterViewInit {
 
   form: FormGroup = this.fb.group({
     title: ['', Validators.required],
@@ -26,18 +26,15 @@ export class AddPostComponent implements OnInit {
   workerTypeOptions: string[] = ['Plomberie', 'Maçonnerie', 'Menuiserie'].sort();
   filteredWorkerTypeOptions: Observable<string[]>;
 
-  selectedFiles: FileList;
-  currentUpload: Upload;
-
-  loadingValue = 0;
-   bufferValue = 75;
-
   filesCount = 0;
 
-  constructor(
+  audioCount = 0;
+  audioUrl = '';
+
+  constructor (
     private fb: FormBuilder,
-    private upSvc: UploadsService
-  ) {
+    public dialog: MatDialog
+    ) {
   }
 
   ngOnInit() {
@@ -52,6 +49,10 @@ export class AddPostComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value, this.workerTypeOptions))
     );
+
+  }
+
+  ngAfterViewInit(): void {
   }
 
   submit() {
@@ -62,50 +63,20 @@ export class AddPostComponent implements OnInit {
     return options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  detectFiles(event) {
-    this.selectedFiles = event.target.files;
-    this.filesCount = this.selectedFiles.length;
-    console.log(this.selectedFiles);
+  record() {
+    this.dialog.open(RecordComponent, {
+      width: '80%',
+      panelClass: ['animated', 'bounceIn', 'faster'],
+      disableClose: true,
+    }).afterClosed().subscribe( () => {
+      if (sessionStorage.getItem('audioUrl')) {
+        this.audioCount = 1;
+        this.audioUrl = sessionStorage.getItem('audioUrl');
+      } else {
+        this.audioCount = 0;
+        this.audioUrl = '';
+      }
+    });
   }
-
-  uploadSingle() {
-    const file = this.selectedFiles.item(0);
-    this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload);
-  }
-
-  uploadMulti() {
-    /*
-    const files = this.selectedFiles;
-    const filesIndex = _.range(files.length);
-    _.each(filesIndex, (idx) => {
-      this.currentUpload = new Upload(files[idx]);
-      this.upSvc.pushUpload(this.currentUpload); }
-    );
-    */
-}
-
-uploadSimulation() {
-  this.loadingValue = 0;
-  this.delay(35);
-}
-
-async delay(ms: number) {
-  await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => {
-    this.loadingValue++;
-    if ( this.loadingValue !== 100) {
-      this.delay(ms);
-    }
-  });
-}
-
-record() {
-  console.log('Recording...');
-
-  Wavesurfer.record();
-
-  Fullscreen.toggleFullscreen();
-
-}
 
 }

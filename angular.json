@@ -50,11 +50,11 @@
               "node_modules/swiper/dist/css/swiper.min.css"
             ],
             "scripts": [
+              "node_modules/wavesurfer.js/dist/wavesurfer.min.js",
+              "src/assets/js/plugins/wavesurfer.microphone.min.js",
               "src/assets/js/scripts/fullscreen.js",
               "src/assets/js/scripts/wavesurfer.js",
-              "node_modules/swiper/dist/js/swiper.min.js",
-              "src/assets/js/plugins/wavesurfer.microphone.min.js",
-              "node_modules/wavesurfer.js/dist/wavesurfer.min.js"
+              "node_modules/swiper/dist/js/swiper.min.js"
             ]
           },
           "configurations": {

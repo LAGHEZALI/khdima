@@ -56,32 +56,19 @@
           <span class="w3-large">
           </span>
         </label>
-        
-        <button  type="button" (click)="uploadSimulation()" mat-mini-fab color="primary" class="w3-margin">
+
+        <button type="button" style="background: #333e44" matBadge="{{audioCount}}" (click)="record()" mat-mini-fab>
           <span class="w3-large">
-            <i class="fas fa-upload"></i>
+            <i class="fas fa-microphone"></i>
           </span>
         </button>
-
+        
         <mat-chip-list class="full-width w3-tiny w3-center">
           <mat-chip *ngFor="let file of selectedFiles">
             <mat-chip color="accent" class="w3-tiny">{{file.name}}</mat-chip>
           </mat-chip>
         </mat-chip-list>
 
-        <button type="button" (click)="uploadSimulation()" mat-mini-fab color="primary" class="w3-margin">
-          <span class="w3-large">
-            <i class="fas fa-microphone"></i>
-          </span>
-        </button>
-
-        <mat-progress-bar *ngIf="loadingValue!==0 && loadingValue!==100" class="full-width w3-margin"
-          color="primary"
-          [mode]="buffer"
-          [value]="loadingValue"
-          [bufferValue]="bufferValue">
-        </mat-progress-bar>
-      
       </div>
 
       <div>
