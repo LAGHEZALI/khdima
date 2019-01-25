@@ -1,9 +1,24 @@
-<div id="overlay" [ngClass]="{'off': !isLoading}" [ngClass]="{'on': isLoading}">
+<div id="overlay" [ngClass]="{'off': !data.isLoading}" [ngClass]="{'on': isLoading}">
     <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
     <div style="height:95%" fxLayout="column" fxLayoutAlign="center center">
+
         <img width="200" src="../../../assets/images/khdima-text.png" alt="logo" class="animated infinite pulse delay-1s msg">
+
         <br>
+        
         <mat-spinner></mat-spinner>
-        <h1 class="animated infinite pulse delay-1s msg" >{{message}}</h1>
+        <br>
+        <mat-progress-bar class="w3-margin w3-padding" *ngIf="data.uploadPerc!==0 && data.uploadPerc!==100"
+            class="example-margin"
+            color="pimary"
+            mode="buffer"
+            value="{{data.uploadPerc}}"
+            bufferValue="{{data.uploadPerc + 10}}">
+        </mat-progress-bar>
+
+        <br>
+
+
+        <h1 class="animated infinite pulse delay-1s msg" >{{data.message}}</h1>
     </div>
 </div>

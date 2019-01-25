@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.rememberMe();
-    LoadingService.on('Connexion en cours');
+    LoadingService.on();
+    LoadingService.update('Connexion en cours', 0);
     this.auth.signin(this.loginForm.value)
     .then(res => {
       this.router.navigate(['/wall']);

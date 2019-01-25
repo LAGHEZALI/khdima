@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 
-let isLoading: boolean;
-let message: string;
-LoadingService.isLoading.subscribe(value => {
-  message = LoadingService.message;
-  isLoading = value;
+let data: {};
+LoadingService.data.subscribe(value => {
+  data = value;
 });
 
 @Component({
@@ -15,17 +13,14 @@ LoadingService.isLoading.subscribe(value => {
 })
 export class LoadingComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  get isLoading() {
-    return isLoading;
-  }
-
-  get message() {
-    return message;
+  get data() {
+    return data;
   }
 
   close() {

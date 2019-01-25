@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   on() {
-    LoadingService.on('Loading ...');
+    LoadingService.on();
   }
 
   off() {

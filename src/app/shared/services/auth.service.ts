@@ -14,11 +14,10 @@ export class AuthService {
     private afs: AngularFirestore,
   ) { }
 
-  signup(value: User) {
+  signup(value: any) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
       .then(res => {
-        value.uid = res.user.uid;
         this.addUser(value);
         resolve(res);
       }, err => reject(err));

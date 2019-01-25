@@ -14,8 +14,11 @@ import {
 })
 export class LoadingService {
 
-  static isLoading = new BehaviorSubject<boolean>(false);
-  static message: string;
+  static data = new BehaviorSubject<{}>({
+    isLoading: false,
+    message: '',
+    uploadPerc: 0
+  });
 
   constructor(
     private router: Router
@@ -23,7 +26,7 @@ export class LoadingService {
     this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
-          LoadingService.on('Loading ...');
+          LoadingService.on();
           break;
         }
 
@@ -40,13 +43,27 @@ export class LoadingService {
     });
   }
 
-  static on(message: string) {
-    LoadingService.message = message;
-    LoadingService.isLoading.next(true);
+  static on() {
+    LoadingService.data.next({
+      isLoading: true,
+      message: 'Loading...',
+      uploadPerc: 0
+    });
+  }
+
+  static update(message: string, uploadPerc: number) {
+    LoadingService.data.next({
+      isLoading: true,
+      message: message,
+      uploadPerc: uploadPerc
+    });
   }
 
   static off() {
-    LoadingService.message = null;
-    LoadingService.isLoading.next(false);
+    LoadingService.data.next({
+      isLoading: false,
+      message: '',
+      uploadPerc: 0
+    });
   }
 }
