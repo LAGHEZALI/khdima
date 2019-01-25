@@ -26,6 +26,7 @@ export class AuthService {
   }
 
   addUser(value: User) {
+    // JSON add uid 
     this.afs.collection('users').add(value).then(res => {
       console.log(res);
     }, err => console.log(err));

@@ -87,7 +87,20 @@ export class RegisterComponent implements OnInit {
       withMail: !this.registerForm.controls.emailCheck.value
     };
 
-    LoadingService.on('Inscription en cours');
+    LoadingService.on();
+    LoadingService.update('Chargement de votre image...', 0);
+
+    let prc = 0;
+    const delayID: any = setInterval(() => {
+      if (prc === 100) {
+        clearInterval(delayID);
+      }
+      LoadingService.update('Chargement de votre image...', prc);
+      prc++;
+    }, 100);
+
+    LoadingService.update('Création de votre compte...', 100);
+
     this.auth.signup(this.registerForm.value)
     .then(res => {
       this.openSuccessDialog();

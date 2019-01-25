@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, from, of } from 'rxjs';
 import { map, startWith, delay } from 'rxjs/operators';
 import { Upload } from 'src/app/shared/models/upload';
-
 import { UploadsService } from '../../shared/services/uploads.service';
+import { Post } from 'src/app/shared/models/post';
 
 @Component({
   selector: 'app-add-post',
@@ -12,7 +12,9 @@ import { UploadsService } from '../../shared/services/uploads.service';
   styleUrls: ['./add-post.component.scss']
 })
 export class AddPostComponent implements OnInit {
-
+  i:number;
+  post : Post
+  progress: {percentage: number} = {percentage: 0}
   form: FormGroup = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
@@ -38,6 +40,7 @@ export class AddPostComponent implements OnInit {
     private fb: FormBuilder,
     private upSvc: UploadsService
   ) {
+    
   }
 
   ngOnInit() {
@@ -55,6 +58,12 @@ export class AddPostComponent implements OnInit {
   }
 
   submit() {
+
+    const post = new Post(this.form.controls.title.value, this.form.controls.category.value,this.form.controls.city.value,
+     this.form.controls.description.value)          
+     post.imagesUrls= new Array()
+    this.upload(post);
+    //Loadingservice
   }
 
   private _filter(value: string, options: string[]  ): string[] {
@@ -71,7 +80,7 @@ export class AddPostComponent implements OnInit {
   uploadSingle() {
     const file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload);
+    //this.upSvc.pushUpload(this.currentUpload);
   }
 
   uploadMulti() {
@@ -84,10 +93,31 @@ export class AddPostComponent implements OnInit {
     );
     */
 }
-
+selectFile(event) {
+  this.selectedFiles = event.target.files;
+  this.filesCount = this.selectedFiles.length;
+ 
+  //this.upload();
+}
+upload(post:Post)
+{
+  let file ;
+    for(this.i=0;this.i< this.selectedFiles.length;this.i++)
+    {   
+        file = this.selectedFiles[this.i];
+        this.currentUpload = new Upload(file);
+        this.upSvc.pushFileToStorage(this.currentUpload, this.progress,post )
+    }
+    console.log("ff()")
+   // this.upSvc.saveFileData(this.currentUpload)
+   
+}
 uploadSimulation() {
+
+  
   this.loadingValue = 0;
   this.delay(35);
+  
 }
 
 async delay(ms: number) {
