@@ -4,15 +4,34 @@
   
     <form class="full-width" fxLayout="column" fxLayoutAlign="space-evenly center" (ngSubmit)="submit()" [formGroup]="loginForm">
 
-      <mat-form-field class="full-width big-font" >
+      <mat-button-toggle-group class="hanono w3-margin" [value]="authType" (change)="onChange(group.value)" #group="matButtonToggleGroup">
+        <mat-button-toggle value="email"><i class="fas fa-at w3-large w3-text-deep-orange"></i></mat-button-toggle>
+        <mat-button-toggle value="phone"><i class="fas fa-phone w3-large w3-text-deep-orange"></i></mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <mat-form-field *ngIf="authType==='email'" class="full-width big-font w3-margin" >
         <input class="validate" matInput placeholder="{{'Email' | translate}}" formControlName="email">
         <mat-error class="small-font" *ngIf="loginForm.controls.email.hasError('email')">
           {{"Veuillez entrer un email valide" | translate}}
         </mat-error>
       </mat-form-field>
-    
+
+      <mat-form-field *ngIf="authType==='phone'" class="full-width w3-margin">
+        <span matPrefix>+212 &nbsp;</span>
+        <input type="tel" matInput placeholder="Numéro de Telephone" formControlName="phoneNumber">
+        <mat-hint>Ex: +212 600000000 </mat-hint>
+        <mat-error *ngIf="loginForm.controls.phoneNumber.hasError('required') || loginForm.controls.phoneNumber.hasError('minLength')
+        || loginForm.controls.phoneNumber.hasError('maxLength')">
+          Numéro <strong>Non valide</strong>
+        </mat-error>
+      </mat-form-field>
+  
       <mat-form-field class="full-width big-font">
-        <input matInput type="password" placeholder="{{'Mot de passe' | translate}}" formControlName="password">
+        <input type="{{passwordHide}}" matInput placeholder="Mot de passe" formControlName="password">
+        <button class="w3-large" type='button' mat-button matSuffix mat-icon-button (click)="showHidePassword()">
+          <mat-icon *ngIf="passwordHide=='password'">visibility</mat-icon>
+          <mat-icon *ngIf="passwordHide=='text'">visibility_off</mat-icon>
+        </button>
         <mat-error  class="small-font" *ngIf="loginForm.controls.password.hasError('required')">
           {{"Ce champ est" | translate}} <strong>{{"Obligatoire" | translate}}</strong>
         </mat-error>
@@ -21,7 +40,7 @@
       <mat-slide-toggle formControlName="remember" color="primary">{{"Se souvenir de moi" | translate}}</mat-slide-toggle>
 
       <div>
-          <button class="submit w3-margin" mat-raised-button [disabled]="!loginForm.valid" color="primary">{{"Se connecter" | translate}}</button>
+          <button class="submit w3-margin" mat-raised-button id='loginsub' color="primary">Se connecter</button>
       </div>
     </form>
     <span style="float: right">
