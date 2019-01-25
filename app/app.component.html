@@ -1,0 +1,7 @@
+<div [class.alt-theme]="theme" id="alldiv">
+  <app-loading></app-loading>
+  <app-header></app-header>
+  <app-sidebar></app-sidebar>
+  <router-outlet></router-outlet>
+  <app-footer *ngIf="showFooter" ></app-footer>
+</div>

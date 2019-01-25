@@ -1,0 +1,33 @@
+<div id="login-div" fxLayout="column" fxLayoutAlign="center center">
+
+  <mat-card class="expand animated zoomIn faster">
+  
+    <form class="full-width" fxLayout="column" fxLayoutAlign="space-evenly center" (ngSubmit)="submit()" [formGroup]="loginForm">
+
+      <mat-form-field class="full-width big-font" >
+        <input class="validate" matInput placeholder="{{'Email' | translate}}" formControlName="email">
+        <mat-error class="small-font" *ngIf="loginForm.controls.email.hasError('email')">
+          {{"Veuillez entrer un email valide" | translate}}
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field class="full-width big-font">
+        <input matInput type="password" placeholder="{{'Mot de passe' | translate}}" formControlName="password">
+        <mat-error  class="small-font" *ngIf="loginForm.controls.password.hasError('required')">
+          {{"Ce champ est" | translate}} <strong>{{"Obligatoire" | translate}}</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-slide-toggle formControlName="remember" color="primary">{{"Se souvenir de moi" | translate}}</mat-slide-toggle>
+
+      <div>
+          <button class="submit w3-margin" mat-raised-button [disabled]="!loginForm.valid" color="primary">{{"Se connecter" | translate}}</button>
+      </div>
+    </form>
+    <span style="float: right">
+      {{"Je n'ai pas encore de compte," | translate}} <a mat-button color="primary" style="padding:0 0; margin:0 0" routerLink="/register">'{{"S'inscrire" | translate}}'</a>
+    </span>
+  </mat-card>
+    
+</div>
+

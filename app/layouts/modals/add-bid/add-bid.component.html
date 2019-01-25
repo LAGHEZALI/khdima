@@ -1,0 +1,87 @@
+<div fxLayout="column" fxLayoutAlign="space-around center" id="full-width">
+
+  <h1 style="color: #f76b0e;" mat-dialog-title>
+    <span style="color: #f76b0e; margin: 10px">
+      <i class="fas fa-vote-yea"></i>
+    </span>
+    Postuler mon service
+  </h1>
+  
+  <div fxLayout="column" fxLayoutAlign="space-around center" class="full-width" id="content" mat-dialog-content>
+
+    <div class="w3-center full-width">
+      
+      <mat-slider
+        class="slider full-width"
+        [disabled]="period_disabled"
+        [invert]="period_invert"
+        [max]="period_max"
+        [min]="period_min"
+        [step]="period_step"
+        [thumbLabel]="period_thumbLabel"
+        [tickInterval]="period_tickInterval"
+        [(ngModel)]="period_value"
+        [vertical]="period_vertical">
+      </mat-slider>
+
+      <mat-button-toggle-group [value]="periodType" (change)="onChange(group.value)" #group="matButtonToggleGroup">
+        <mat-button-toggle value="h">Heures</mat-button-toggle>
+        <mat-button-toggle value="d">Jours</mat-button-toggle>
+        <mat-button-toggle value="m">Mois</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <mat-chip-list fxLayout="row" fxLayoutAlign="center center" class="w3-center full-width w3-margin">
+      <mat-chip class="w3-center" color="primary" selected>{{period_value}} {{prettyPeriod()}}</mat-chip>
+    </mat-chip-list>
+      
+    <div class="w3-center full-width">
+
+      <mat-slider
+        class="slider full-width"
+        [disabled]="cost_disabled"
+        [invert]="cost_invert"
+        [max]="cost_max"
+        [min]="cost_min"
+        [step]="cost_step"
+        [thumbLabel]="cost_thumbLabel"
+        [tickInterval]="cost_tickInterval"
+        [(ngModel)]="cost_value"
+        [vertical]="cost_vertical">
+      </mat-slider>
+
+    </div>
+
+    <mat-chip-list fxLayout="row" fxLayoutAlign="center center" class="w3-center full-width w3-margin">
+        <mat-chip color="primary" selected>{{cost_value}} DH</mat-chip>
+    </mat-chip-list>
+
+    <mat-form-field  class="full-width">
+      <textarea matInput [(ngModel)]="comment" placeholder="Laisser un commentaire"></textarea>
+    </mat-form-field>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-evenly center" mat-dialog-actions>
+
+    <button (click)="close()" class="w3-red"  mat-mini-fab>
+      <span class="w3-xlarge">
+        <i class="fas fa-times"></i>
+      </span>
+    </button>
+
+    <button [disabled]="period_value===0 || cost_value===0" (click)="bid()" class="w3-margin" mat-raised-button color="primary">
+      Postuler
+    </button>
+
+    <button (click)="clear()" color="accent" mat-mini-fab>
+      <span class="w3-xlarge">
+        <i class="fas fa-eraser"></i>
+      </span>
+    </button>
+    
+  </div>
+
+</div>
+    
+      

@@ -1,0 +1,95 @@
+<div id="add-post-div" fxLayout="column" fxLayoutAlign="center center">
+
+  <mat-card style="margin: 7% 0" class="expand animated zoomIn faster card" fxLayout="row" fxLayoutAlign="center center">
+  
+    <form class="full-width" fxLayout="column" fxLayoutAlign="space-evenly center" (ngSubmit)="submit()" [formGroup]="form">
+
+      <mat-form-field class="full-width big-font" >
+        <input class="validate" matInput placeholder="Titre" formControlName="title">
+        <mat-error class="small-font w3-text-red" *ngIf="form.controls.title.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="Description" formControlName="description"></textarea>
+        <mat-error class="small-font w3-text-red" *ngIf="form.controls.description.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input type="text" placeholder="Categorie" aria-label="Number" matInput formControlName="category" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredWorkerTypeOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-icon matSuffix>work_outline</mat-icon>
+        <mat-error class="small-font w3-text-red" *ngIf="form.controls.category.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input type="text" placeholder="Ville" aria-label="Number" matInput formControlName="city" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredCityOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-icon matSuffix>location_city</mat-icon>
+        <mat-error class="small-font w3-text-red" *ngIf="form.controls.city.hasError('required')">
+          Ce champ est <strong>Obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="full-width w3-center">
+
+        <input type="file" name="file" id="file" class="inputfile" (change)="detectFiles($event)" multiple/>
+        
+        <label class="w3-round-xlarge w3-padding w3-margin" for="file" matBadge="{{filesCount}}" matBadgeOverlap="true">
+          <span class="w3-large">
+            <i class="fas fa-plus" style="margin-right: 10px"></i>
+            <i class="fas fa-images"></i>
+          </span>
+          <span class="w3-large">
+          </span>
+        </label>
+        
+        <button  type="button" (click)="uploadSimulation()" mat-mini-fab color="primary" class="w3-margin">
+          <span class="w3-large">
+            <i class="fas fa-upload"></i>
+          </span>
+        </button>
+
+        <mat-chip-list class="full-width w3-tiny w3-center">
+          <mat-chip *ngFor="let file of selectedFiles">
+            <mat-chip color="accent" class="w3-tiny">{{file.name}}</mat-chip>
+          </mat-chip>
+        </mat-chip-list>
+
+        <button type="button" (click)="uploadSimulation()" mat-mini-fab color="primary" class="w3-margin">
+          <span class="w3-large">
+            <i class="fas fa-microphone"></i>
+          </span>
+        </button>
+
+        <mat-progress-bar *ngIf="loadingValue!==0 && loadingValue!==100" class="full-width w3-margin"
+          color="primary"
+          [mode]="buffer"
+          [value]="loadingValue"
+          [bufferValue]="bufferValue">
+        </mat-progress-bar>
+      
+      </div>
+
+      <div>
+        <button class="submit w3-margin" mat-raised-button [disabled]="!form.valid" color="primary">Poster</button>
+      </div>
+
+    </form>
+    
+  </mat-card>
+    
+</div>

@@ -1,0 +1,12 @@
+<div id="wall-div" >
+
+  
+  <cdk-virtual-scroll-viewport itemSize="300">
+    <div *cdkVirtualFor="let post of postsObservable | async; let i =index;">
+      <app-post [data]="post" [index]="i"></app-post>
+    </div>
+
+  </cdk-virtual-scroll-viewport>
+
+</div>
+

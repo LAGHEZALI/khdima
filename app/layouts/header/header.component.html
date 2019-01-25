@@ -1,0 +1,42 @@
+<div id="header-div">
+  <mat-toolbar [ngClass]="{'w3-top': isMobile}" color="primary">
+
+    <mat-toolbar-row>
+  
+      <button id="openNav" (click)="openSidebar()" class="icon" mat-icon-button>
+        <span style="font-size: 20pt">
+            <i class="fas fa-bars"></i>
+        </span>
+      </button>
+
+      <span class="spacer"></span>
+  
+      <button mat-button routerLink="/"  class="logo">
+        Khdima
+      </button>
+  
+      <span class="spacer"></span>
+
+
+  
+      <button *ngIf="!login" routerLink="/login" class="icon" mat-icon-button>
+        <span style="font-size: 20pt">
+            <i class="fas fa-sign-in-alt"></i>
+        </span>
+      </button>
+
+      <button *ngIf="login && route=='/home'" routerLink="/wall" style="width: 45px; height:45px;" color="primary" mat-icon-button>
+        <img style="padding: 0 0; margin: 0 0;" src="assets/images/khdima-btn.png" width="35px" class="w3-image" />
+      </button>
+
+      <button *ngIf="login  && route!='/home'" class="icon" (click)="logout()" mat-icon-button>
+          <span style="font-size: 20pt">
+              <i class="fas fa-sign-out-alt"></i>
+          </span>
+      </button>
+  
+    </mat-toolbar-row>
+  
+  </mat-toolbar>
+</div>
+  

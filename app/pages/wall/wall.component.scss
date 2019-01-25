@@ -1,0 +1,14 @@
+#wall-div {
+  height: 95%;
+  overflow: hidden;
+}
+
+cdk-virtual-scroll-viewport {
+  height: 90%;
+
+  li {
+    height: 100px;
+  }
+
+
+}

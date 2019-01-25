@@ -1,0 +1,68 @@
+<div id="search-div">
+
+  <h1 style="color: #f76b0e;" mat-dialog-title>
+    <span style="color: #f76b0e; margin: 10px">
+      <i class="fas fa-search"></i>
+    </span>
+    Rechercher / Filtrer
+  </h1>
+  
+  <div id="content" mat-dialog-content>
+
+    <form class="full-width" fxLayout="column" fxLayoutAlign="space-evenly center" [formGroup]="searchForm">
+
+      <mat-form-field class="full-width big-font" >
+        <input class="validate" matInput placeholder="Mots clés" formControlName="keyWords">
+      </mat-form-field>
+      
+      <mat-select placeholder="Ville" class="full-width w3-margin w3-center" 
+          panelClass="select w3-center w3-text-white w3-deep-orange" formControlName="city">
+        <mat-option class="w3-center w3-text-white">Toutes Les villes</mat-option>
+        <mat-option class="w3-center w3-text-white" *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+      </mat-select>
+
+      <mat-select placeholder="Catégorie" class="full-width w3-margin w3-center" 
+          panelClass="select w3-center w3-text-white w3-deep-orange" formControlName="category">
+        <mat-option class="w3-center w3-text-white">Toutes Les catégories</mat-option>
+        <mat-option class="w3-center w3-text-white" *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+      </mat-select>
+
+      <mat-select placeholder="Période" class="full-width w3-margin w3-center" 
+          panelClass="select w3-center w3-text-white w3-deep-orange" formControlName="period">
+        <mat-option class="w3-center w3-text-white">Toutes Les périodes</mat-option>
+        <mat-option class="w3-center w3-text-white" *ngFor="let period of periods" [value]="period">{{period}}</mat-option>
+      </mat-select>
+
+      <mat-slide-toggle class="w3-margin" formControlName="withImage" color="primary">Uniquement avec Image(s)</mat-slide-toggle>
+      
+      <mat-slide-toggle class="w3-margin" formControlName="withAudio" color="primary">Uniquement avec audio</mat-slide-toggle>
+
+    </form>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-evenly center" mat-dialog-actions>
+
+    <button (click)="close()" class="w3-red"  mat-mini-fab>
+      <span class="w3-xlarge">
+        <i class="fas fa-times"></i>
+      </span>
+    </button>
+
+    <button [disabled]="!searchForm.dirty" (click)="submit()" color="primary" mat-mini-fab>
+      <span class="w3-xlarge">
+        <i class="fas fa-search"></i>
+      </span>
+    </button>
+
+    <button (click)="clear()" color="accent" mat-mini-fab>
+      <span class="w3-xlarge">
+        <i class="fas fa-eraser"></i>
+      </span>
+    </button>
+    
+  </div>
+
+</div>
+    
+    
