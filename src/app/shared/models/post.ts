@@ -6,7 +6,7 @@ export class Post {
     content?:           string;
     userPhotoURL?:      string;
     userDisplayName?:   string;
-    dateCreated?:       Number;
+    dateCreated?:       Object;
     city?:              string;
     imagesUrls?:        string[];
     recordUrl?:         string;
@@ -19,7 +19,7 @@ export class Post {
         content: string,
         userPhotoURL: string,
         userDisplayName: string,
-        dateCreated: Number,
+        dateCreated: Object,
         city: string,
         imagesUrls:  string[],
         recordUrl: string) {
@@ -38,5 +38,11 @@ export class Post {
 
     toJson(): string {
         return JSON.stringify(this, null, '  ');
+    }
+
+    getData(): object {
+        const result = {};
+        Object.keys(this).map(key => result[key] = this[key]);
+        return result;
     }
 }

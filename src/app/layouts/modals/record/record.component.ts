@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { UploadsService } from 'src/app/shared/services/uploads.service';
 
 @Component({
   selector: 'app-record',
@@ -22,7 +23,8 @@ export class RecordComponent implements OnInit, AfterViewInit {
 
   constructor(
     public dialogRef: MatDialogRef<RecordComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private uploadService: UploadsService
   ) {
   }
 
@@ -79,11 +81,13 @@ export class RecordComponent implements OnInit, AfterViewInit {
 
   save() {
     sessionStorage.setItem('audioUrl', Wavesurfer.getAudioUrl());
+    this.uploadService.recordUrl = Wavesurfer.getAudioUrl();
     this.dialogRef.close();
   }
 
   erase() {
     sessionStorage.clear();
+    this.uploadService.recordUrl = '';
     this.dialogRef.close();
   }
 

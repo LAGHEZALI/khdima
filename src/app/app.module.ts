@@ -31,6 +31,8 @@ import { UserBsComponent } from './layouts/bottomSheet/user-bs/user-bs.component
 import { PolicyComponent } from './layouts/bottomSheet/policy/policy.component';
 import { AddBidComponent } from './layouts/modals/add-bid/add-bid.component';
 import { RecordComponent } from './layouts/modals/record/record.component';
+import { UploadGaleryComponent } from './layouts/modals/upload-galery/upload-galery.component';
+import { AddPostSuccessComponent } from './layouts/modals/add-post-success/add-post-success.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { RecordComponent } from './layouts/modals/record/record.component';
     SearchComponent,
     AddBidComponent,
     RecordComponent,
+    UploadGaleryComponent,
+    AddPostSuccessComponent,
   ],
   entryComponents: [
     //  bottom sheets
@@ -78,6 +82,8 @@ import { RecordComponent } from './layouts/modals/record/record.component';
     SearchComponent,
     AddBidComponent,
     RecordComponent,
+    UploadGaleryComponent,
+    AddPostSuccessComponent,
   ],
   imports: [
     BrowserModule,

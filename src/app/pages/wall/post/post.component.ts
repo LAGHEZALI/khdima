@@ -3,6 +3,7 @@ import { WavesurferComponent } from 'src/app/layouts/modals/wavesurfer/wavesurfe
 import { MatDialog } from '@angular/material';
 import { GaleryComponent } from 'src/app/layouts/modals/galery/galery.component';
 import { AddBidComponent } from 'src/app/layouts/modals/add-bid/add-bid.component';
+import { Post } from 'src/app/shared/models/post';
 
 @Component({
   selector: 'app-post',
@@ -12,6 +13,7 @@ import { AddBidComponent } from 'src/app/layouts/modals/add-bid/add-bid.componen
 export class PostComponent implements OnInit, AfterViewInit {
 
   @Input() data: any;
+  @Input() json: string;
   @Input() index: number;
 
   btn = 'play';
@@ -23,6 +25,10 @@ export class PostComponent implements OnInit, AfterViewInit {
   text = this.minText + '...';
 
   state = false;
+
+  post: Post;
+  audioCount = 0;
+  imgCount = 0;
 
   buttonShowHideIcon = 'down';
   buttonShowHideColor = 'primary';
@@ -37,8 +43,9 @@ export class PostComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    //  remove this following line when deploy
-    this.data.recordUrl = 'assets/audio/dari.mp3';
+    this.post = JSON.parse(this.json);
+    this.audioCount = this.post.recordUrl === '' ? 0 : 1;
+    this.imgCount = this.post.imagesUrls.length;
   }
 
   wavesurfer() {

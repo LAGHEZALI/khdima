@@ -94,7 +94,6 @@ export class RegisterComponent implements OnInit {
     LoadingService.on();
     LoadingService.update('Création de votre compte...', 0);
 
-
     this.auth.signup(user, this.file)
     .then(res => {
       this.openSuccessDialog();

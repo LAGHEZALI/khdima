@@ -17,12 +17,6 @@ export class GaleryComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
-
-    this.data = [
-      'http://lorempixel.com/800/800/sports/1/',
-      'http://lorempixel.com/800/400/sports/2',
-      'http://lorempixel.com/400/800/sports/3/'
-    ];
   }
 
   ngAfterViewInit(): void {

@@ -4,6 +4,10 @@ import { Observable } from 'rxjs';
 import { Post } from '../models/post';
 import * as firebase from 'firebase';
 import * as faker from 'faker';
+import { UploadsService } from './uploads.service';
+import { AuthService } from './auth.service';
+import { User } from '../models/user';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +15,9 @@ import * as faker from 'faker';
 export class PostService {
 
   constructor(
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private uploadService: UploadsService,
+    private auth: AuthService
   ) { }
 
   get timestamp() {
@@ -43,8 +49,57 @@ export class PostService {
     };
   }
 
-  addPost(post: {}) {
-    this.afs.collection('posts').add(post);
+  addPost(post: Post) {
+    return new Promise<any>((resolve, reject) => {
+      this.auth.getCurrentCollectionUser()
+      .then( (user: User) => {
+        post.userUid = user.uid;
+        post.userPhotoURL = user.photoURL;
+        post.dateCreated = this.timestamp;
+        post.userDisplayName = user.firstName + ' ' + user.lastName;
+        this.afs.collection('posts').add(post.getData())
+          .then((value) => {
+            if (this.uploadService.images.length > 0) {
+              let l  = this.uploadService.images.length;
+              this.uploadService.uploadImages(this.uploadService.images, 'posts/' + value.id, []);
+              this.uploadService.finish.subscribe((urls: string[]) => {
+                if (urls.length === l && l !== -1) {
+                  l = -1;
+                  this.uploadService.uploadRecord(this.uploadService.recordUrl, value.id, 'records/' + value.id)
+                  .then( (audioUrl) => {
+                    LoadingService.update('Création de votre Poste...', 0);
+                    this.addImagUrls(urls, audioUrl, value.id)
+                    .then( (postWithImg) => {
+                      resolve(postWithImg);
+                    });
+                  });
+                }
+              });
+            } else {
+              this.uploadService.uploadRecord(this.uploadService.recordUrl, value.id, 'records/' + value.id)
+                .then( (audioUrl) => {
+                  LoadingService.update('Création de votre Poste...', 0);
+                  this.addImagUrls([], audioUrl, value.id)
+                  .then( (postWithImg) => {
+                    resolve(postWithImg);
+                  });
+                });
+            }
+          });
+      });
+    });
+  }
+
+  addImagUrls(urls: string[], audioUrl: string, id: string): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.afs.collection('posts').doc(id).update({
+        'imagesUrls': urls,
+        'recordUrl': audioUrl,
+      })
+      .then( (post) => {
+        resolve(post);
+      });
+    });
   }
 
 }

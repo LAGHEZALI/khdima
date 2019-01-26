@@ -74,7 +74,6 @@ export class LoginComponent implements OnInit {
     })
     .finally( () => {
       LoadingService.off();
-      console.log(this.auth.currentUser);
     });
   }
 

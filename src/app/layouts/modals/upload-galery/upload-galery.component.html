@@ -1,0 +1,67 @@
+<div>
+  <h1 style="color: #f76b0e;" mat-dialog-title>
+    <span style="color: #f76b0e; margin: 10px">
+      <i class="fas fa-upload w3-margin"></i>
+      <i class="fas fa-images"></i>
+    </span>
+    <span class="w3-medium">Charger des images</span>
+    
+  </h1>
+  <div id="content" mat-dialog-content>
+
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-around center"  class="w3-margin w3-padding">
+
+      <button (click)="prev()" color="accent" mat-mini-fab>
+        <span class="w3-large">
+          <i class="fas fa-chevron-left"></i>
+        </span>
+      </button>
+
+      <input #file  id="file" name="file" type="file" class="inputfile" accept='image/*' (change)="preview(file.files)" multiple/>
+
+      <button type="button" (click)="file.click()" matBadge="{{filesCount}}" style="background: #333e44" mat-mini-fab>
+        <span class="w3-large">
+          <i class="fas fa-plus"></i>
+        </span>
+      </button>
+        
+      <button (click)="next()" color="accent" mat-mini-fab>
+        <span class="w3-large">
+          <i class="fas fa-chevron-right"></i>
+        </span>
+      </button>
+  
+    </div>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-evenly center" mat-dialog-actions>
+
+    <button (click)="erase()" color="accent" mat-mini-fab>
+      <span class="w3-large">
+        <i class="fas fa-eraser"></i>
+      </span>
+    </button>
+
+    <button (click)="save()" color="primary" mat-mini-fab>
+      <span class="w3-large">
+        <i class="fas fa-check"></i>
+      </span>
+    </button>
+
+    <button (click)="close()" class="w3-red"  mat-mini-fab>
+      <span class="w3-xlarge">
+        <i class="fas fa-times"></i>
+      </span>
+    </button>
+    
+  </div>
+</div>
+    
+    

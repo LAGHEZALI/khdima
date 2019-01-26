@@ -1,0 +1,27 @@
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  overflow: hidden;
+}
+
+.full-width {
+  width: 90%;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    background-color: #333e44;
+    display: inline-block;
+    color: azure;
+    cursor: pointer;
+}

@@ -12,6 +12,8 @@ import { LoadingService } from './loading.service';
 })
 export class AuthService {
 
+  currentCollectionUser: User;
+
   constructor(
     private afs: AngularFirestore,
     private uploadService: UploadsService
@@ -49,9 +51,13 @@ export class AuthService {
   signinWithEmail(email: string, password: string) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(res => {
-        resolve(res);
-      }, err => reject(err));
+      .then(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err);
+        });
     });
   }
 
@@ -65,6 +71,25 @@ export class AuthService {
           resolve(this.signinWithEmail(users[0].email, password));
         }
       });
+    });
+  }
+
+  getCurrentCollectionUser(): Promise<User> {
+    return new Promise<User>((resolve, reject) => {
+      if (!this.currentUser()) {
+        reject('user not connected');
+      } else {
+        const uid = this.currentUser().uid;
+        this.afs.collection('users', ref => ref.where('uid', '==', uid))
+        .valueChanges().subscribe((users: User[]) => {
+          if (users[0] === undefined) {
+            reject('user not found');
+          } else {
+            this.currentCollectionUser = users[0];
+            resolve(users[0]);
+          }
+        });
+      }
     });
   }
 
