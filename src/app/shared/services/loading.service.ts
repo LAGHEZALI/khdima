@@ -14,7 +14,7 @@ import {
 })
 export class LoadingService {
 
-  static data = new BehaviorSubject<{}>({
+  static data = new BehaviorSubject<any>({
     isLoading: false,
     message: '',
     uploadPerc: 0

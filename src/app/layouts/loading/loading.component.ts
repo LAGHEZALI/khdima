@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 
-let data: {};
+let isLoading = false;
+let message: string;
+let uploadPerc: number;
+
 LoadingService.data.subscribe(value => {
-  data = value;
+  isLoading = value.isLoading;
+  message = value.message;
+  uploadPerc = value.uploadPerc;
 });
 
 @Component({
@@ -19,8 +24,16 @@ export class LoadingComponent implements OnInit {
   ngOnInit() {
   }
 
-  get data() {
-    return data;
+  get isLoading() {
+    return isLoading;
+  }
+
+  get message() {
+    return message;
+  }
+
+  get uploadPerc() {
+    return uploadPerc;
   }
 
   close() {
