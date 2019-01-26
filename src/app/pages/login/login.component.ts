@@ -41,18 +41,18 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    if (this.authType === 'email') {
-      this.submitWithEmail();
-    } else {
-      console.log('auth with phone');
-    }
-  }
-
-  submitWithEmail() {
     this.rememberMe();
     LoadingService.on();
     LoadingService.update('Connexion en cours', 0);
-    this.auth.signin(this.loginForm.value)
+    if (this.authType === 'email') {
+      this.submitWithEmail();
+    } else {
+      this.submitWithPhone();
+    }
+  }
+
+  submitWithPhone() {
+    this.auth.signinWithPhone(this.loginForm.controls.phoneNumber.value, this.loginForm.controls.password.value)
     .then(res => {
       this.router.navigate(['/wall']);
       this.openSuccessDialog();
@@ -61,6 +61,20 @@ export class LoginComponent implements OnInit {
     })
     .finally( () => {
       LoadingService.off();
+    });
+  }
+
+  submitWithEmail() {
+    this.auth.signinWithEmail(this.loginForm.controls.email.value, this.loginForm.controls.password.value)
+    .then(res => {
+      this.router.navigate(['/wall']);
+      this.openSuccessDialog();
+    }, err => {
+      this.openErrorDialog();
+    })
+    .finally( () => {
+      LoadingService.off();
+      console.log(this.auth.currentUser);
     });
   }
 
@@ -87,6 +101,7 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.value.remember) {
       this.cookieService.set( 'savedLogs', JSON.stringify({
+        phoneNumber: this.loginForm.value.phoneNumber,
         email: this.loginForm.value.email,
         password: this.loginForm.value.password,
       }));
@@ -98,6 +113,7 @@ export class LoginComponent implements OnInit {
   loadSavedLogs() {
     if (this.cookieService.check('savedLogs')) {
       const logs = JSON.parse(this.cookieService.get('savedLogs'));
+      this.loginForm.controls['phoneNumber'].setValue(logs.phoneNumber);
       this.loginForm.controls['email'].setValue(logs.email);
       this.loginForm.controls['password'].setValue(logs.password);
     }

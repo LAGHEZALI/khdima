@@ -3,8 +3,9 @@ import { InitService } from './shared/services/init.service';
 import { ThemeService } from './shared/services/theme.service';
 import { Router } from '@angular/router';
 
-ThemeService.theme.subscribe(value => theme = value);
 let theme = false;
+ThemeService.theme.subscribe(value => theme = value);
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

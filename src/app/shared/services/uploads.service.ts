@@ -4,42 +4,46 @@ import * as firebase from 'firebase';
 
 import { AngularFireDatabase } from '@angular/fire/database';
 
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
+import { LoadingService } from './loading.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadsService {
 
+  private basePath = '/files';
+
   constructor(private db: AngularFireDatabase) { }
 
-  private basePath = '/uploads';
+  uploadImage(file: any, path: string): Promise<string> {
 
-  pushUpload(upload: Upload) {
-    const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
+    return new Promise<string>(resolve => {
 
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) =>  {
-        // upload in progress
-        // upload.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        upload.progress = Number(snapshot.toString());
-      },
-      (error) => {
-        // upload failed
-        console.log(error);
-      },
-      () => {
-        // upload success
-        upload.url = uploadTask.snapshot.downloadURL;
-        upload.name = upload.file.name;
-        this.saveFileData(upload);
+      if (file === undefined) {
+        // tslint:disable-next-line:max-line-length
+        resolve('https://firebasestorage.googleapis.com/v0/b/khdima-cc985.appspot.com/o/files%2Fimages%2Fprofile%2Favatar.png?alt=media&token=99c1edbf-ea0c-43bd-a1e4-df4e3771c37f');
+      } else {
+        const fileUpload = new Upload(file);
+        const storageRef = firebase.storage().ref();
+        const uploadTask = storageRef.child(`${this.basePath}/images/${path}/${fileUpload.file.name}`)
+                          .put(fileUpload.file);
+
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) => {
+          const snap = snapshot as firebase.storage.UploadTaskSnapshot;
+          LoadingService.update('Chargement de votre Image', Math.round((snap.bytesTransferred / snap.totalBytes) * 100));
+        }, (error) => {
+          console.error(error);
+          // tslint:disable-next-line:max-line-length
+          resolve('https://firebasestorage.googleapis.com/v0/b/khdima-cc985.appspot.com/o/files%2Fimages%2Fprofile%2Favatar.png?alt=media&token=99c1edbf-ea0c-43bd-a1e4-df4e3771c37f');
+        }, () => {
+          uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+            fileUpload.url = downloadURL;
+            fileUpload.name = fileUpload.file.name;
+            resolve(downloadURL);
+          });
+        });
       }
-    );
-  }
-
-  // Writes the file details to the realtime db
-  private saveFileData(upload: Upload) {
-    this.db.list(`${this.basePath}/`).push(upload);
+    });
   }
 }

@@ -20,6 +20,8 @@ export class LoadingService {
     uploadPerc: 0
   });
 
+  static msg: string;
+
   constructor(
     private router: Router
   ) {
@@ -49,12 +51,22 @@ export class LoadingService {
       message: 'Loading...',
       uploadPerc: 0
     });
+    LoadingService.msg = 'Loading...';
   }
 
   static update(message: string, uploadPerc: number) {
     LoadingService.data.next({
       isLoading: true,
       message: message,
+      uploadPerc: uploadPerc
+    });
+    LoadingService.msg = message;
+  }
+
+  static updateSameMessage(uploadPerc: number) {
+    LoadingService.data.next({
+      isLoading: true,
+      message: LoadingService.msg,
       uploadPerc: uploadPerc
     });
   }

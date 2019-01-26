@@ -4,8 +4,6 @@ import { SidebarService } from 'src/app/shared/services/sidebar.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
 
-ScreenService.isMobile.subscribe( value => HeaderComponent.isMobile = value);
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -45,3 +43,5 @@ export class HeaderComponent implements OnInit {
     return HeaderComponent.isMobile;
   }
 }
+
+ScreenService.isMobile.subscribe( value => HeaderComponent.isMobile = value);

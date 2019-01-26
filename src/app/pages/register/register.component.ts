@@ -8,6 +8,7 @@ import { LoadingService } from 'src/app/shared/services/loading.service';
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { PolicyComponent } from 'src/app/layouts/bottomSheet/policy/policy.component';
+import { User } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-register',
@@ -39,12 +40,13 @@ export class RegisterComponent implements OnInit {
   imgURL = 'assets/images/avatar.png';
   public message: string;
 
+  file: File;
+
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     public dialog: MatDialog,
     private policySheet: MatBottomSheet,
-
   ) { }
 
   ngOnInit() {
@@ -54,6 +56,7 @@ export class RegisterComponent implements OnInit {
       map(value => this._filter(value, this.cityOptions))
     );
     this.registerForm.controls.policy.setValue(false);
+    this.registerForm.controls.emailCheck.setValue(false);
   }
 
   preview(files) {
@@ -70,38 +73,29 @@ export class RegisterComponent implements OnInit {
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
       this.imgURL = String(reader.result);
+      this.file = files[0];
     };
   }
 
   submit() {
 
-    const body = {
-      firstName: this.registerForm.controls.firstName.value,
-      lastName: this.registerForm.controls.lastName.value,
-      birthday: new Date(this.registerForm.controls.birthday.value),
-      gender: this.registerForm.controls.gender.value,
-      city: this.registerForm.controls.city.value,
-      phoneNumber: this.registerForm.controls.phoneNumber.value,
-      email: this.registerForm.controls.email.value,
-      password: this.registerForm.controls.password.value,
-      withMail: !this.registerForm.controls.emailCheck.value
-    };
+    const user = new User(
+      this.registerForm.controls.firstName.value,
+      this.registerForm.controls.lastName.value,
+      new Date(this.registerForm.controls.birthday.value),
+      this.registerForm.controls.gender.value,
+      this.registerForm.controls.city.value,
+      this.registerForm.controls.phoneNumber.value,
+      this.registerForm.controls.email.value,
+      this.registerForm.controls.password.value,
+      this.registerForm.controls.emailCheck.value
+    );
 
     LoadingService.on();
-    LoadingService.update('Chargement de votre image...', 0);
+    LoadingService.update('Création de votre compte...', 0);
 
-    let prc = 0;
-    const delayID: any = setInterval(() => {
-      if (prc === 100) {
-        clearInterval(delayID);
-      }
-      LoadingService.update('Chargement de votre image...', prc);
-      prc++;
-    }, 100);
 
-    LoadingService.update('Création de votre compte...', 100);
-
-    this.auth.signup(this.registerForm.value)
+    this.auth.signup(user, this.file)
     .then(res => {
       this.openSuccessDialog();
     }, err => {
