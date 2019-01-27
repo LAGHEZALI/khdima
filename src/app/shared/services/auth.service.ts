@@ -110,7 +110,7 @@ export class AuthService {
     return firebase.auth().onAuthStateChanged(x);
   }
 
-  currentUser() {
+  currentUser(): firebase.User {
     return firebase.auth().currentUser;
   }
 }

@@ -1,5 +1,7 @@
+import { Bid } from './bid';
+
 export class Post {
-    uid?:               string;
+    id?:               string;
     userUid:            string;
     title:              string;
     category:           string;
@@ -10,9 +12,10 @@ export class Post {
     city?:              string;
     imagesUrls?:        string[];
     recordUrl?:         string;
+    bids?:              Bid[];
 
     constructor(
-        uid: string,
+        id: string,
         userUid: string,
         title: string,
         category: string,
@@ -23,7 +26,7 @@ export class Post {
         city: string,
         imagesUrls:  string[],
         recordUrl: string) {
-            this.uid = uid;
+            this.id = id;
             this.userUid = userUid;
             this.title = title;
             this.category = category;

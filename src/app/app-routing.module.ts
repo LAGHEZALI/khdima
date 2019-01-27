@@ -6,6 +6,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { WallComponent } from './pages/wall/wall.component';
 import { AddPostComponent } from './pages/add-post/add-post.component';
+import { MyPostsComponent } from './pages/my-posts/my-posts.component';
+import { OnePostComponent } from './pages/one-post/one-post.component';
 
 const routes: Routes = [
   { path: 'home'      , component: HomeComponent },
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'register'  , component: RegisterComponent },
   { path: 'wall'      , component: WallComponent },
   { path: 'add-post'  , component: AddPostComponent },
+  { path: 'my-posts'  , component: MyPostsComponent },
+  { path: 'post'      , component: OnePostComponent },
   { path: ''          , redirectTo: 'home', pathMatch: 'full' },
   { path: '**'        , component: ErrorComponent },
 ];

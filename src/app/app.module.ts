@@ -33,6 +33,8 @@ import { AddBidComponent } from './layouts/modals/add-bid/add-bid.component';
 import { RecordComponent } from './layouts/modals/record/record.component';
 import { UploadGaleryComponent } from './layouts/modals/upload-galery/upload-galery.component';
 import { AddPostSuccessComponent } from './layouts/modals/add-post-success/add-post-success.component';
+import { MyPostsComponent } from './pages/my-posts/my-posts.component';
+import { OnePostComponent } from './pages/one-post/one-post.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { AddPostSuccessComponent } from './layouts/modals/add-post-success/add-p
     RecordComponent,
     UploadGaleryComponent,
     AddPostSuccessComponent,
+    MyPostsComponent,
+    OnePostComponent,
   ],
   entryComponents: [
     //  bottom sheets

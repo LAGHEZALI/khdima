@@ -1,24 +1,22 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
+import { Post } from 'src/app/shared/models/post';
+
 import { WavesurferComponent } from 'src/app/layouts/modals/wavesurfer/wavesurfer.component';
 import { MatDialog } from '@angular/material';
 import { GaleryComponent } from 'src/app/layouts/modals/galery/galery.component';
 import { AddBidComponent } from 'src/app/layouts/modals/add-bid/add-bid.component';
-import { Post } from 'src/app/shared/models/post';
 import { PostService } from 'src/app/shared/services/post.service';
 import { Bid } from 'src/app/shared/models/bid';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
+  selector: 'app-one-post',
+  templateUrl: './one-post.component.html',
+  styleUrls: ['./one-post.component.scss']
 })
-export class PostComponent implements OnInit, AfterViewInit {
+export class OnePostComponent implements OnInit {
 
-  @Input() data: any;
-  @Input() json: string;
-  @Input() index: number;
-
-  btn = 'play';
+  post: Post;
 
   totalText = 'Loading Text...';
 
@@ -28,51 +26,37 @@ export class PostComponent implements OnInit, AfterViewInit {
 
   state = false;
 
-  post: Post;
-  audioCount = 0;
-  imgCount = 0;
-  bidsCount = 0;
-
   buttonShowHideIcon = 'down';
   buttonShowHideColor = 'primary';
 
   constructor(
+    public navCtrl: NgxNavigationWithDataComponent,
     public dialog: MatDialog,
     private postService: PostService
   ) {
+    this.post = this.navCtrl.get('post');
   }
 
   ngOnInit() {
-    this.initReadMore();
-  }
-
-  ngAfterViewInit(): void {
-    this.post = JSON.parse(this.json);
-    this.audioCount = this.post.recordUrl === '' ? 0 : 1;
-    this.imgCount = this.post.imagesUrls.length;
-    this.postService.getPostBids(this.post.id).subscribe(
-      (bids: Bid[]) => {
-        this.bidsCount = bids.length;
-    });
   }
 
   wavesurfer() {
-    if (this.audioCount > 0) {
+    if (this.post.recordUrl !== '') {
       this.dialog.open(WavesurferComponent, {
         width: '90%',
         panelClass: ['animated', 'bounceIn', 'faster'],
         disableClose: true,
-        data: this.data.recordUrl
+        data: this.post.recordUrl
       });
     }
   }
 
   galery() {
-    if (this.imgCount > 0) {
+    if (this.post.imagesUrls.length > 0) {
       this.dialog.open(GaleryComponent, {
         width: '95%',
         panelClass: ['animated', 'faceIn', 'faster'],
-        data: this.data.imagesUrls
+        data: this.post.imagesUrls
       });
     }
   }
@@ -86,7 +70,7 @@ export class PostComponent implements OnInit, AfterViewInit {
   }
 
   initReadMore() {
-    this.totalText = this.data.content;
+    this.totalText = this.post.content;
     this.minText = this.totalText.substring(0, 100);
     this.text = this.minText + '...';
     this.state = false;

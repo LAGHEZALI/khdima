@@ -11,6 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { UploadsService } from './services/uploads.service';
 import { TranslationService } from './services/translation.service';
 import { TranslatePipe } from './pipes/translate.pipe';
+import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 
 const modules = [
   CommonModule,
@@ -36,7 +37,7 @@ const declarations = [
 
 @NgModule({
   declarations: [declarations],
-  providers: [services, PretyJsonPipe],
+  providers: [services, PretyJsonPipe, NgxNavigationWithDataComponent],
   imports: [modules],
   exports: [modules, declarations]
 })

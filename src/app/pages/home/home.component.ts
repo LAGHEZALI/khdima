@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,15 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
   }
 
   ngAfterViewInit(): void {
+  }
+
+  user() {
+    this.auth.getCurrentCollectionUser().then((user) => console.log(user));
   }
 }

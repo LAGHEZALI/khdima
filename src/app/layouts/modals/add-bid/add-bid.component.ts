@@ -1,5 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
+import { Bid } from 'src/app/shared/models/bid';
+import { BidService } from 'src/app/shared/services/bid.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Component({
   selector: 'app-add-bid',
@@ -52,18 +55,47 @@ export class AddBidComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddBidComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private bidService: BidService,
+    private snackBar: MatSnackBar
   ) {
-    console.log(data);
   }
 
   ngOnInit() {
   }
 
   bid() {
-    console.log('PEDIOD: ' + this.period_value + ' ' + this.prettyPeriod());
-    console.log('COST: ' + this.cost_value + ' DH');
-    console.log('COMMENT: ' + this.comment);
+    LoadingService.on();
+    LoadingService.update('Envoi de votre demande...', 0);
+    const price = this.cost_value;
+    const delay = this.period_value + ' ' + this.prettyPeriod();
+    const comment = this.comment;
+    const postID = this.data;
+
+    const bid = new Bid (
+      String(price),
+      delay,
+      comment,
+      postID,
+      null,
+      'new',
+      '',
+      '',
+      ''
+    );
+    this.bidService.addBid(bid)
+    .then( (newBid) => {
+      this.snackBar.open('Demande Envoyé avec succès', 'Fermer', {
+        duration: 2000,
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+    .finally( () => {
+      LoadingService.off();
+      this.clear();
+    });
   }
 
   clear() {

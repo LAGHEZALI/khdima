@@ -67,13 +67,13 @@ export class AddPostComponent implements OnInit, AfterViewInit {
 
   submit() {
     const post = new Post(
-      'uid',
-      'userUID',
+      '',
+      '',
       this.form.controls.title.value,
       this.form.controls.category.value,
       this.form.controls.description.value,
-      'userPhotoURL',
-      'user DisplayName',
+      '',
+      '',
       null,
       this.form.controls.city.value,
       [],
@@ -128,4 +128,7 @@ export class AddPostComponent implements OnInit, AfterViewInit {
     });
   }
 
+  clear() {
+    this.form.reset();
+  }
 }

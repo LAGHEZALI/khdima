@@ -29,6 +29,18 @@ export class PostService {
     return postsCollection.valueChanges();
   }
 
+  getMyPosts(): Observable<Post[]> {
+    const postsCollection: AngularFirestoreCollection<any> =
+      this.afs.collection('posts', ref => ref.where('userUid', '==', this.auth.currentUser().uid));
+    return postsCollection.valueChanges();
+  }
+
+  getPostBids(postId: string): Observable<any[]> {
+    const bidsCollection: AngularFirestoreCollection<any>
+      = this.afs.collection('posts').doc(postId).collection('bids');
+    return bidsCollection.valueChanges();
+  }
+
   generatePost(): {} {
     return {
       category: faker.fake('{{name.firstName}}'),
@@ -95,6 +107,7 @@ export class PostService {
       this.afs.collection('posts').doc(id).update({
         'imagesUrls': urls,
         'recordUrl': audioUrl,
+        'id': id,
       })
       .then( (post) => {
         resolve(post);

@@ -1,0 +1,59 @@
+<div id="one-post-div" class="animated zoomInUp 1s w3-margin w3-padding">
+  <mat-card>
+
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image w3-center">
+        <img src="{{post.userPhotoURL}}" class="animated zoomIn 2s example-header-image">
+        {{post.userDisplayName}}
+      </div>
+      <mat-card-title style="font-size: 12pt;">{{post.title}}</mat-card-title>
+      <mat-card-subtitle class="nop"><i class="fas fa-briefcase"></i> {{post.category}}</mat-card-subtitle>
+      <mat-card-subtitle class="nop"><i class="fas fa-city"></i> {{post.city}}</mat-card-subtitle>
+      <mat-card-subtitle class="nop"><i class="far fa-clock"></i> {{post.dateCreated.seconds * 1000 | date:'MM-dd-yyyy h:mm:ss a' | timeAgo}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="w3-margin">
+      <br>
+      <p>{{text}}</p>
+      <div class="w3-center">
+        <button (click)="readMore()" color="{{buttonShowHideColor}}" mat-mini-fab>
+          <span class="w3-xlarge">
+              <i class="fas fa-chevron-circle-{{buttonShowHideIcon}}"></i>
+          </span>
+        </button>
+      </div>
+    </mat-card-content>
+      
+    <mat-card-actions fxLayout="row" fxLayoutAlign="space-between center">
+
+      <div>
+        <button color="primary" mat-icon-button>
+          <mat-icon matBadge="0" matBadgeColor="warn">favorite_border</mat-icon>
+        </button>
+  
+        <button color="primary" mat-icon-button>
+          <mat-icon matBadge="0" matBadgeColor="warn">chat_bubble_outline</mat-icon>
+        </button>
+      </div>
+      
+      <button color="primary" mat-icon-button>
+        <mat-icon matBadge="{{post.bids.length}}" (click)="bid()" matBadgeColor="warn">how_to_vote</mat-icon>
+      </button>
+
+      <div>
+        <button (click)="wavesurfer()" color="primary" mat-icon-button>
+          <mat-icon matBadge="{{post.recordUrl === '' ? 0 : 1}}" matBadgeColor="warn">mic</mat-icon>
+        </button>
+        
+        <button (click)="galery()"  color="primary" mat-icon-button>
+          <mat-icon matBadge="{{post.imagesUrls.length}}"  matBadgeColor="warn">photo_library</mat-icon>
+        </button>
+      </div>
+      
+    </mat-card-actions>
+
+    
+
+  </mat-card>
+</div>
+  
